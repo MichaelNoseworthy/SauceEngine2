@@ -45,3 +45,5 @@
 Source/.vs/*
 Source/x64/*
 Source/x64/Debug/*
+Game/*
+Temp/*
