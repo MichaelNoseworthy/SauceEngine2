@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
+#include "Objects/HardwareChecks.cpp"
 
 int main()
 {
@@ -11,6 +11,12 @@ int main()
 	texture.loadFromImage(background);
 	sf::Sprite sprite(texture);
 	sf::Clock clock;
+		CheckRAM();
+		CheckCPU();
+		int hardwareResult;
+		hardwareResult = CheckHDDHardware();
+		if (hardwareResult == 0)
+			return 1;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -21,6 +27,7 @@ int main()
 
 		}
 		sf::Time elapsed1 = clock.getElapsedTime();
+		
 		if (elapsed1 >= sf::seconds(3.0f))
 		{
 			background.create(1024, 740, sf::Color::Black);
