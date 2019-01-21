@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Objects/HardwareChecks.cpp"
+#include "Components/HardwareChecks.cpp"
 
 int main()
 {
