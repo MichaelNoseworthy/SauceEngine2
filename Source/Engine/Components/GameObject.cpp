@@ -3,19 +3,23 @@
 
 GameObject::GameObject()
 {
+	
 	name = "DefaultGameObject";
-	position(0, 0);
+	Position(0, 0);
+	
 }
 
-GameObject::GameObject(string n, int x, int y)
+GameObject::GameObject(string n, float x, float y)
 {
 	name = n;
-	position(x, y);
+	Position(x, y);
 }
+
 void GameObject::SetParent(GameObject* p)
 {
 	parent = p;
 }
+
 void GameObject::AddChild(GameObject* s)
 {
 	children.push_back(s);
@@ -27,4 +31,9 @@ GameObject::~GameObject()
 {
 	for (unsigned int i = 0; i < children.size(); i++)
 		delete children[i];
+}
+
+int GameObject::Position(float x, float y)
+{
+	return 0;
 }

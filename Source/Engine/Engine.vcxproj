@@ -178,6 +178,7 @@
     <ClInclude Include="Components\ActorComponent.h" />
     <ClInclude Include="Components\AI_Component.h" />
     <ClInclude Include="Components\Ammo.h" />
+    <ClInclude Include="Components\GameObject.h" />
     <ClInclude Include="Components\GraphicsComponentInterface.h" />
     <ClInclude Include="Components\HardwareChecks.h" />
     <ClInclude Include="Components\Health.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="Components\ActorComponent.cpp" />
     <ClCompile Include="Components\AI_Component.cpp" />
     <ClCompile Include="Components\Ammo.cpp" />
+    <ClCompile Include="Components\GameObject.cpp" />
     <ClCompile Include="Components\GraphicsComponentInterface.cpp" />
     <ClCompile Include="Components\HardwareChecks.cpp" />
     <ClCompile Include="Components\Health.cpp" />

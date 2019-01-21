@@ -12,13 +12,13 @@ class GameObject
 {
 public:
 	GameObject();
-	GameObject(std::string name, int x, int y);
+	GameObject(std::string name, float x, float y);
 
 	int ID;
 	void SetParent(GameObject* p);
 	void AddChild(GameObject* s);
 	string name;
-	int position(int x, int y);
+	int Position(float x, float y);
 	int xPosition;
 	int yPosition;
 

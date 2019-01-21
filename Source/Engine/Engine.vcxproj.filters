@@ -84,6 +84,9 @@
     <ClInclude Include="Components\Transform.h">
       <Filter>Components\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Components\GameObject.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -147,6 +150,9 @@
       <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\GameObject.cpp">
       <Filter>Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
