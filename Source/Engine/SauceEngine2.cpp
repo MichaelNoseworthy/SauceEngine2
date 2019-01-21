@@ -1,11 +1,16 @@
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 
 int main()
 {
 	sf::RenderWindow window({ 1024, 740 }, "Sauce Engine 2");
 	window.setFramerateLimit(30);
-
+	sf::Image background;
+	background.create(1024, 740, sf::Color::Blue);
+	sf::Texture texture;
+	texture.loadFromImage(background);
+	sf::Sprite sprite(texture);
+	sf::Clock clock;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -15,9 +20,18 @@ int main()
 				window.close();
 
 		}
-
+		sf::Time elapsed1 = clock.getElapsedTime();
+		if (elapsed1 >= sf::seconds(3.0f))
+		{
+			background.create(1024, 740, sf::Color::Black);
+			texture.loadFromImage(background);
+			window.draw(sprite);
+		}
 		window.clear();
+		window.draw(sprite);
 		window.display();
 
 	}
 }
+
+
