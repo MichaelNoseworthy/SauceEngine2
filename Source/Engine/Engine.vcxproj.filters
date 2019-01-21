@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,132 +8,146 @@
     <Filter Include="Components">
       <UniqueIdentifier>{3a566fe1-d774-4726-bca6-59ffef7ac99c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Header">
+      <UniqueIdentifier>{bd53233f-f7e3-4d53-b64a-bec1a64732f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Source">
+      <UniqueIdentifier>{4c26edfd-baa7-4026-a907-c058062bb58a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Engine Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Keyboard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\Actor.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\ActorComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\AI_Component.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Ammo.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\GraphicsComponentInterface.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\HardwareChecks.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Health.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Mana.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\MeshCollider.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\MeshRenderer.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Pathfinding.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\PhysicsComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\PickupsInterface.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Rigidbody.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\SpecialAbility.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\StatsComponent.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
     <ClInclude Include="Components\Transform.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EventHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SauceEngine2.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Actor.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\ActorComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\AI_Component.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Ammo.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\GraphicsComponentInterface.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\HardwareChecks.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Health.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Mana.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\MeshCollider.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\MeshRenderer.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Pathfinding.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\PhysicsComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\PickupsInterface.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Rigidbody.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\SpecialAbility.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\StatsComponent.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Components\Transform.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
