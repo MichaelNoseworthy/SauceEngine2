@@ -3,12 +3,13 @@
 #include "Components/HardwareChecks.cpp"
 #include "resource.h"
 
+
+
+HWND button;
 ////////////////////////////////////////////////////////////
 /// Function called whenever one of our windows receives a message
 ///
 ////////////////////////////////////////////////////////////
-
-HWND button;
 LRESULT CALLBACK onEvent(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -90,7 +91,7 @@ int main()
 				windowClass.cbClsExtra = 0;
 				windowClass.cbWndExtra = 0;
 				windowClass.hInstance = instance;
-				windowClass.hIcon = (HICON)LoadImage(NULL, L"Sauce.ico", IMAGE_ICON, 32, 32, LR_LOADFROMFILE);;
+				windowClass.hIcon = (HICON)LoadImage(NULL, L"Sauce.ico", IMAGE_ICON, 32, 32, LR_LOADFROMFILE);  //Does nothing when enabled
 				windowClass.hCursor = 0;
 				windowClass.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BACKGROUND);
 				windowClass.lpszMenuName = NULL;
@@ -100,7 +101,6 @@ int main()
 
 				// Let's create the main window
 				HWND window = CreateWindow(TEXT("SFML App"), TEXT("Sauce Engine 2"), WS_SYSMENU | WS_VISIBLE, 200, 200, 660, 520, NULL, NULL, instance, NULL);
-				
 				// Add a button for exiting
 				button = CreateWindow(TEXT("BUTTON"), TEXT("Quit"), WS_CHILD | WS_VISIBLE, 560, 440, 80, 40, window, NULL, instance, NULL);
 
@@ -116,7 +116,7 @@ int main()
 				if (!texture1.loadFromFile("../../Assets/images/image1.jpg") || !texture2.loadFromFile("../../Assets/images/image2.jpg"))
 				{
 					//find it in the game directory instead
-					if (!texture1.loadFromFile("../Assets/images/image1.jpg") || !texture2.loadFromFile("../Assets/images/image2.jpg"))
+					if (!texture1.loadFromFile("./Assets/images/image1.jpg") || !texture2.loadFromFile("./Assets/images/image2.jpg"))
 						return EXIT_FAILURE; //can't find it at all
 				}
 
@@ -229,16 +229,17 @@ int main()
 				L"\n\nException caught at main window creation.";
 			MessageBox(nullptr, eMsg.c_str(), L"Unhandled STL Exception", MB_OK);
 		}
-		catch (...)
-		{
-
-			cout << "Apps already opened." << endl;
-			MessageBox(NULL, L"CreateMutex error\n" L"Do not open multiple applications of Sauce Engine 2", Opened, MB_OK | MB_ICONWARNING);
-			return 1;
-		}
 	}
+	else
+	{
 
-	//return 0;
+	std::string outmsg = "CreateMutex error\nDo not open multiple applications of Sauce Engine 2";
+	OutputDebugStringA(outmsg.c_str());
+	cout << "Sauce Engine is already opened." << endl; //shows only in console
+	MessageBox(NULL, L"CreateMutex error\n" L"Do not open multiple applications of Sauce Engine 2", Opened, MB_OK | MB_ICONWARNING); //Pops up an error message
+	return 1;
+	}
+	return 0;
 }
 
 
