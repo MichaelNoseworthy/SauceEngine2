@@ -1,10 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Components">
       <UniqueIdentifier>{3a566fe1-d774-4726-bca6-59ffef7ac99c}</UniqueIdentifier>
     </Filter>
@@ -21,6 +17,10 @@
     <Filter Include="Engine Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Engine Resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="Components\GameObject.h">
       <Filter>Components\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Engine Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -157,8 +160,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Sauce.ico">
-      <Filter>Resource Files</Filter>
+    <Image Include="..\..\Assets\Sauce.ico">
+      <Filter>Engine Resources</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>Engine Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
