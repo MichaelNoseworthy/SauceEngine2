@@ -21,6 +21,8 @@ public:
 	int Position(float x, float y);
 	int xPosition;
 	int yPosition;
+	bool isActive;
+	string layer;
 
 	~GameObject();
 private:

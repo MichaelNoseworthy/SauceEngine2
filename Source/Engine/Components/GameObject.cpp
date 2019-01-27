@@ -2,8 +2,7 @@
 
 
 GameObject::GameObject()
-{
-	
+{	
 	name = "DefaultGameObject";
 	Position(0, 0);
 	
