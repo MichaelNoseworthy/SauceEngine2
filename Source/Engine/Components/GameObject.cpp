@@ -34,5 +34,12 @@ GameObject::~GameObject()
 
 int GameObject::Position(float x, float y)
 {
+	Position(x, y);
 	return 0;
+}
+
+sf::Vector2f GameObject::GetPosition(GameObject* o){
+	sf::Vector2f position(o->xPosition, o->yPosition);	
+	
+	return position;
 }
