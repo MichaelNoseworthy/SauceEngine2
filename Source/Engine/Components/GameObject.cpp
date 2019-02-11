@@ -4,14 +4,19 @@
 GameObject::GameObject()
 {	
 	name = "DefaultGameObject";
-	Position(0, 0);
-	
+	SetPosition(0, 0);
 }
 
 GameObject::GameObject(string n, float x, float y)
 {
 	name = n;
-	Position(x, y);
+	SetPosition(x, y);
+}
+
+GameObject::GameObject(string n, sf::Vector2f position)
+{
+	name = n;
+	SetPosition(position);
 }
 
 void GameObject::SetParent(GameObject* p)
@@ -32,10 +37,22 @@ GameObject::~GameObject()
 		delete children[i];
 }
 
-int GameObject::Position(float x, float y)
+void GameObject::SetPosition(sf::Vector2f position)
 {
-	Position(x, y);
-	return 0;
+	xPosition = position.x;
+	yPosition = position.y;
+
+	//if (&sprite.getTexture)
+		sprite.setPosition(xPosition, yPosition);
+}
+
+void GameObject::SetPosition(float x,float y)
+{
+	xPosition = x;
+	yPosition = y;
+
+	//if (&sprite.getTexture)
+		sprite.setPosition(xPosition, yPosition);
 }
 
 sf::Vector2f GameObject::GetPosition(GameObject* o){

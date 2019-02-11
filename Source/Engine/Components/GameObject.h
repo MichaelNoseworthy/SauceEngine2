@@ -16,6 +16,7 @@ class GameObject
 public:
 	GameObject();
 	GameObject(std::string name, float x, float y);
+	GameObject(std::string name, sf::Vector2f position);
 
 	int ID;
 	void SetParent(GameObject* p);
@@ -23,11 +24,15 @@ public:
 	sf::Vector2f GetPosition(GameObject* o);
 
 	string name;
-	int Position(float x, float y);
+	
+	void SetPosition(float x, float y);
+	void SetPosition(sf::Vector2f position);
 	float xPosition;
 	float yPosition;
 	bool isActive;
 	string layer;
+	sf::Sprite sprite;
+
 
 	~GameObject();
 private:

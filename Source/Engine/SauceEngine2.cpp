@@ -2,6 +2,7 @@
 #include <windows.h>
 #include "Components/HardwareChecks.cpp"
 #include "resource.h"
+#include "Components/GameObject.h"
 
 
 
@@ -125,6 +126,11 @@ int main()
 				sprite1.setOrigin(sf::Vector2f(texture1.getSize()) / 2.f);
 				sprite1.setPosition(sprite1.getOrigin());
 
+				//gameobject testing
+				GameObject aTest;
+				aTest.sprite.setTexture(texture1);
+				aTest.SetPosition(sf::Vector2f(10, 10));
+
 				/*
 				sf::RenderWindow window({ 1024, 740 }, "Sauce Engine 2");
 				window.setFramerateLimit(30);
@@ -161,7 +167,9 @@ int main()
 						sf::Time elapsed1 = clock.getElapsedTime();
 						if (elapsed1 >= sf::seconds(3.0f))
 						{
-
+							SFMLView1.draw(aTest.sprite);
+							if (elapsed1 >= sf::seconds(4.0f))
+								aTest.SetPosition(0,0);
 						}
 						else
 						{
