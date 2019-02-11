@@ -112,12 +112,18 @@ int main()
 				sf::RenderWindow SFMLView2(view2);
 
 				// Load some textures to display
-				sf::Texture texture1, texture2;
+				sf::Texture texture1, texture2, texture3;
 				//find it in the main assets directory
-				if (!texture1.loadFromFile("../../Assets/images/GameObject.jpg") || !texture2.loadFromFile("../../Assets/images/image2.jpg"))
+				if (!texture1.loadFromFile("../../Assets/images/image1.jpg") || !texture2.loadFromFile("../../Assets/images/image2.jpg"))
 				{
 					//find it in the game directory instead
 					if (!texture1.loadFromFile("./Assets/images/image1.jpg") || !texture2.loadFromFile("./Assets/images/image2.jpg"))
+						return EXIT_FAILURE; //can't find it at all
+				}
+
+				if (!texture3.loadFromFile("../../Assets/images/GameObject.jpg"))
+				{
+					if (!texture1.loadFromFile("./Assets/images/GameObject.jpg"))
 						return EXIT_FAILURE; //can't find it at all
 				}
 
@@ -128,7 +134,7 @@ int main()
 
 				//gameobject testing
 				GameObject aTest;
-				aTest.sprite.setTexture(texture1);
+				aTest.sprite.setTexture(texture3);
 				aTest.SetPosition(sf::Vector2f(10, 10));
 
 				/*
