@@ -114,7 +114,7 @@ int main()
 				// Load some textures to display
 				sf::Texture texture1, texture2;
 				//find it in the main assets directory
-				if (!texture1.loadFromFile("../../Assets/images/image1.jpg") || !texture2.loadFromFile("../../Assets/images/image2.jpg"))
+				if (!texture1.loadFromFile("../../Assets/images/GameObject.jpg") || !texture2.loadFromFile("../../Assets/images/image2.jpg"))
 				{
 					//find it in the game directory instead
 					if (!texture1.loadFromFile("./Assets/images/image1.jpg") || !texture2.loadFromFile("./Assets/images/image2.jpg"))
