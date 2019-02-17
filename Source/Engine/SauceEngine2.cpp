@@ -104,7 +104,22 @@ int main()
 				HWND window = CreateWindow(TEXT("SFML App"), TEXT("Sauce Engine 2"), WS_SYSMENU | WS_VISIBLE, 200, 200, 660, 520, NULL, NULL, instance, NULL);
 				// Add a button for exiting
 				button = CreateWindow(TEXT("BUTTON"), TEXT("Quit"), WS_CHILD | WS_VISIBLE, 560, 440, 80, 40, window, NULL, instance, NULL);
+				sf::Clock clock;
 
+				sf::RenderWindow SplashScreen(window);
+				while (true)
+				{
+					sf::Time elapsed1 = clock.getElapsedTime();
+					if (elapsed1 >= sf::seconds(3.0f))
+					{
+						break;
+					}
+					else 
+					{
+						SplashScreen.clear(sf::Color::Blue);
+						SplashScreen.display();
+					}
+				}
 				// Let's create two SFML views
 				HWND view1 = CreateWindow(TEXT("STATIC"), NULL, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, 20, 20, 300, 400, window, NULL, instance, NULL);
 				HWND view2 = CreateWindow(TEXT("STATIC"), NULL, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, 340, 20, 300, 400, window, NULL, instance, NULL);
@@ -139,16 +154,8 @@ int main()
 
 				/*
 				sf::RenderWindow window({ 1024, 740 }, "Sauce Engine 2");
-				window.setFramerateLimit(30);
-				sf::Image background;
-				background.create(1024, 740, sf::Color::Blue);
-				sf::Texture texture;
-				texture.loadFromImage(background);
-				sf::Sprite sprite(texture);
 				*/
-				sf::Clock clock;
-
-
+				//window.setFramerateLimit(30);
 
 				// Loop until a WM_QUIT message is received
 				MSG message;
@@ -168,10 +175,8 @@ int main()
 						// Clear views
 						SFMLView1.clear();
 						SFMLView2.clear();
-
-
 						sf::Time elapsed1 = clock.getElapsedTime();
-						if (elapsed1 >= sf::seconds(3.0f))
+						if (elapsed1 >= sf::seconds(6.0f))
 						{
 							SFMLView1.draw(aTest.sprite);
 							if (elapsed1 >= sf::seconds(4.0f))
@@ -187,14 +192,11 @@ int main()
 							sprite2.setPosition(std::cos(time) * 100.f, 0.f);
 							SFMLView2.draw(sprite2);
 						}
-
+						
 						// Display each view on screen
 						SFMLView1.display();
 						SFMLView2.display();
-
-
-
-
+	
 					}
 				}
 
