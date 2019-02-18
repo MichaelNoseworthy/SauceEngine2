@@ -176,7 +176,9 @@ int main()
 						SFMLView1.clear();
 						SFMLView2.clear();
 						sf::Time elapsed1 = clock.getElapsedTime();
-						if (elapsed1 >= sf::seconds(6.0f))
+						//testing clock
+
+						if (elapsed1 >= sf::seconds(5.0f))
 						{
 							SFMLView1.draw(aTest.sprite);
 							if (elapsed1 >= sf::seconds(4.0f))
