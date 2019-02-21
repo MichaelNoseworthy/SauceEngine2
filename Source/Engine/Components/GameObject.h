@@ -27,6 +27,8 @@ public:
 	
 	void SetPosition(float x, float y);
 	void SetPosition(sf::Vector2f position);
+	float GetPositionX();
+	float GetPositionY();
 	float xPosition;
 	float yPosition;
 	bool isActive;

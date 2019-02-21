@@ -42,7 +42,7 @@ int main()
 {
 	HANDLE ghMutex;
 	ghMutex = CreateMutex(NULL,
-		FALSE, L"SauceEngine");
+		FALSE, L"SauceEngine2");
 
 	DWORD err = GetLastError();
 	LPTSTR Error = 0;
@@ -96,12 +96,12 @@ int main()
 				windowClass.hCursor = 0;
 				windowClass.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BACKGROUND);
 				windowClass.lpszMenuName = NULL;
-				windowClass.lpszClassName = TEXT("SFML App");
+				windowClass.lpszClassName = TEXT("SauceEngine2");
 				RegisterClass(&windowClass);
 
 
 				// Let's create the main window
-				HWND window = CreateWindow(TEXT("SFML App"), TEXT("Sauce Engine 2"), WS_SYSMENU | WS_VISIBLE, 200, 200, 660, 520, NULL, NULL, instance, NULL);
+				HWND window = CreateWindow(TEXT("SauceEngine2"), TEXT("Sauce Engine 2"), WS_SYSMENU | WS_VISIBLE, 200, 200, 660, 520, NULL, NULL, instance, NULL);
 				// Add a button for exiting
 				button = CreateWindow(TEXT("BUTTON"), TEXT("Quit"), WS_CHILD | WS_VISIBLE, 560, 440, 80, 40, window, NULL, instance, NULL);
 				sf::Clock clock;
@@ -123,8 +123,12 @@ int main()
 				// Let's create two SFML views
 				HWND view1 = CreateWindow(TEXT("STATIC"), NULL, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, 20, 20, 300, 400, window, NULL, instance, NULL);
 				HWND view2 = CreateWindow(TEXT("STATIC"), NULL, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, 340, 20, 300, 400, window, NULL, instance, NULL);
+				HWND view3 = CreateWindow(TEXT("STATIC"), NULL, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS, 0, 0, 660, 520, window, NULL, instance, NULL);
 				sf::RenderWindow SFMLView1(view1);
 				sf::RenderWindow SFMLView2(view2);
+				sf::RenderWindow SFMLView3(view3);
+
+				SFMLView3.setVisible(false);
 
 				// Load some textures to display
 				sf::Texture texture1, texture2, texture3;
@@ -177,12 +181,30 @@ int main()
 						SFMLView2.clear();
 						sf::Time elapsed1 = clock.getElapsedTime();
 						//testing clock
-
+						bool isStarted = false;
 						if (elapsed1 >= sf::seconds(5.0f))
 						{
-							SFMLView1.draw(aTest.sprite);
-							if (elapsed1 >= sf::seconds(4.0f))
-								aTest.SetPosition(0,0);
+							
+							SFMLView1.setVisible(false);
+							SFMLView2.setVisible(false);
+							SFMLView3.setVisible(true);
+							SFMLView3.clear(sf::Color::Green);
+							SFMLView3.draw(aTest.sprite);
+							if (elapsed1 >= sf::seconds(5.0f))
+							{
+								aTest.SetPosition(aTest.GetPositionX() + 1, 0);
+								elapsed1 = clock.restart();
+								isStarted = true;
+							}
+
+							if (isStarted)
+							{
+								if (elapsed1 >= sf::seconds(1.0f))
+								{
+									aTest.SetPosition(aTest.GetPositionX() + 10, aTest.GetPositionY() + 10);
+									elapsed1 = clock.restart();
+								}
+							}
 						}
 						else
 						{
@@ -198,6 +220,7 @@ int main()
 						// Display each view on screen
 						SFMLView1.display();
 						SFMLView2.display();
+						SFMLView3.display();
 	
 					}
 				}
@@ -234,7 +257,7 @@ int main()
 				DestroyWindow(window);
 
 				// Don't forget to unregister the window class
-				UnregisterClass(TEXT("SFML App"), instance);
+				UnregisterClass(TEXT("SauceEngine2"), instance);
 
 				return EXIT_SUCCESS;
 			}

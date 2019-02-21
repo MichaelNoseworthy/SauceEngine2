@@ -55,6 +55,17 @@ void GameObject::SetPosition(float x,float y)
 		sprite.setPosition(xPosition, yPosition);
 }
 
+float GameObject::GetPositionX()
+{
+	return xPosition;
+}
+
+float GameObject::GetPositionY()
+{
+	return yPosition;
+}
+
+
 sf::Vector2f GameObject::GetPosition(GameObject* o){
 	sf::Vector2f position(o->xPosition, o->yPosition);	
 	
