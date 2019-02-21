@@ -106,6 +106,19 @@ int main()
 				button = CreateWindow(TEXT("BUTTON"), TEXT("Quit"), WS_CHILD | WS_VISIBLE, 560, 440, 80, 40, window, NULL, instance, NULL);
 				sf::Clock clock;
 
+				sf::Texture SplashScreenImage;
+				if (!SplashScreenImage.loadFromFile("../../Assets/images/SplashScreen.jpg") || !SplashScreenImage.loadFromFile("../../Assets/images/SplashScreen.jpg"))
+				{
+					//find it in the game directory instead
+					if (!SplashScreenImage.loadFromFile("./Assets/images/SplashScreen.jpg") || !SplashScreenImage.loadFromFile("./Assets/images/SplashScreen.jpg"))
+						return EXIT_FAILURE; //can't find it at all
+				}
+
+				sf::Sprite SplashSprite(SplashScreenImage);
+				SplashSprite.setOrigin(sf::Vector2f(SplashScreenImage.getSize()) / 2.f);
+				SplashSprite.setPosition(SplashSprite.getOrigin());
+
+
 				sf::RenderWindow SplashScreen(window);
 				while (true)
 				{
@@ -116,7 +129,9 @@ int main()
 					}
 					else 
 					{
+						
 						SplashScreen.clear(sf::Color::Blue);
+						SplashScreen.draw(SplashSprite);
 						SplashScreen.display();
 					}
 				}
