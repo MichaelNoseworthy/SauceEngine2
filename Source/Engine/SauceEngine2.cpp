@@ -4,9 +4,11 @@
 #include "resource.h"
 #include "Components/GameObject.h"
 
+using namespace sf;
 
 
 HWND button;
+sf::Event event;
 ////////////////////////////////////////////////////////////
 /// Function called whenever one of our windows receives a message
 ///
@@ -66,8 +68,6 @@ int main()
 
 	DWORD result = WaitForSingleObject(ghMutex, 0);
 
-
-
 	if (result == WAIT_OBJECT_0)
 	{
 		try
@@ -102,6 +102,7 @@ int main()
 
 				// Let's create the main window
 				HWND window = CreateWindow(TEXT("SauceEngine2"), TEXT("Sauce Engine 2"), WS_SYSMENU | WS_VISIBLE, 200, 200, 660, 520, NULL, NULL, instance, NULL);
+
 				// Add a button for exiting
 				button = CreateWindow(TEXT("BUTTON"), TEXT("Quit"), WS_CHILD | WS_VISIBLE, 560, 440, 80, 40, window, NULL, instance, NULL);
 				sf::Clock clock;
@@ -170,17 +171,52 @@ int main()
 				GameObject aTest;
 				aTest.sprite.setTexture(texture3);
 				aTest.SetPosition(sf::Vector2f(10, 10));
-
 				/*
 				sf::RenderWindow window({ 1024, 740 }, "Sauce Engine 2");
 				*/
 				//window.setFramerateLimit(30);
+
+				sf::RectangleShape test(sf::Vector2f (100.0f, 100.0f));
+				test.setFillColor(sf::Color::Red);
 
 				// Loop until a WM_QUIT message is received
 				MSG message;
 				message.message = static_cast<UINT>(~WM_QUIT);
 				while (message.message != WM_QUIT)
 				{
+					if (Mouse::isButtonPressed(Mouse::Left))
+					{
+					}
+					if (Mouse::isButtonPressed(Mouse::Right))
+					{
+					}
+
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+					{
+						test.move(-0.1, 0.0f);
+					}
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)|| sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+					{
+						test.move(0.1, 0.0f);
+					}
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)|| sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+					{
+						test.move(0.0, -0.1f);
+					}
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)|| sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+					{
+						test.move(0.0, 0.1f);
+					}
+
+					
+						  
+					/*if (event.type == sf::Event::EventType::KeyPressed) {
+						if (event.key.code == sf::Keyboard::Left) {
+							printf("left");
+						}
+					}*/
+					
+
 					if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 					{
 						// If a message was waiting in the message queue, process it
@@ -199,12 +235,13 @@ int main()
 						bool isStarted = false;
 						if (elapsed1 >= sf::seconds(5.0f))
 						{
-							
 							SFMLView1.setVisible(false);
 							SFMLView2.setVisible(false);
 							SFMLView3.setVisible(true);
-							SFMLView3.clear(sf::Color::Green);
+							//SFMLView3.clear(sf::Color::Green);
 							SFMLView3.draw(aTest.sprite);
+							SFMLView1.close();
+							SFMLView2.close();
 							if (elapsed1 >= sf::seconds(5.0f))
 							{
 								aTest.SetPosition(aTest.GetPositionX() + 1, 0);
@@ -233,13 +270,17 @@ int main()
 						}
 						
 						// Display each view on screen
+						SFMLView3.clear();
+						SFMLView3.draw(test);
 						SFMLView1.display();
 						SFMLView2.display();
 						SFMLView3.display();
 	
 					}
 				}
+				
 
+				
 				/*
 				while (window.isOpen())
 				{
