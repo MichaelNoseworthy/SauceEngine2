@@ -120,7 +120,7 @@ int main()
 				{
 					scene = Scenes[scene]->Run(App);
 				}
-				//system("PAUSE");
+				//system("PAUSE");  //Enable me for debugging purposes.  Must be using console window.
 				return EXIT_SUCCESS;
 
 				/*

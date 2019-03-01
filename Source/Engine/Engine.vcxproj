@@ -106,7 +106,8 @@
       <OutputFile>$(SolutionDir)..\Game\$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)..\assets\*.*" "$(TargetDir)assets\" /S /I /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\assets\*.*" "$(TargetDir)assets\" /S /I /Y
+XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -154,7 +155,8 @@
       <OutputFile>$(SolutionDir)..\Game\$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)..\assets\*.*" "$(TargetDir)assets\" /S /I /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\assets\*.*" "$(TargetDir)assets\" /S /I /Y
+XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

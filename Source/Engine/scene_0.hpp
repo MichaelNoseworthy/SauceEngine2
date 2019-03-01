@@ -34,19 +34,30 @@ int scene_0::Run(sf::RenderWindow &App)
 	sf::Text Menu2;
 	sf::Text Menu3;
 	int menu = 0;
-
-	if (!Texture.loadFromFile("presentation.png"))
-	{
-		std::cerr << "Error loading presentation.gif" << std::endl;
-		return (-1);
-	}
+	//if (!Texture.loadFromFile("present.png"))
+	if (!Texture.loadFromFile("../../Assets/images/present.png"))
+		if (!Texture.loadFromFile("./Assets/images/present.png"))
+		{
+			std::cerr << "Error loading present.png" << std::endl;
+			return (-1); //can't find it at all
+		}
+	
+	/*
+	if (!Texture.loadFromFile("../../Assets/images/present.png"))
+		if (!Texture.loadFromFile("./Assets/images/present.png"))
+		{
+			std::cerr << "Error loading present.png" << std::endl;
+			return (-1); //can't find it at all
+		}
+		*/
 	Sprite.setTexture(Texture);
 	Sprite.setColor(sf::Color(255, 255, 255, alpha));
-	if (!Font.loadFromFile("verdanab.ttf"))
-	{
-		std::cerr << "Error loading verdanab.ttf" << std::endl;
-		return (-1);
-	}
+	if (!Font.loadFromFile("../../Assets/fonts/verdanab.ttf"))
+		if (!Font.loadFromFile("./Assets/fonts/verdanab.ttf"))
+		{
+			std::cerr << "Error loading verdanab.ttf" << std::endl;
+			return (-1);
+		}
 	Menu1.setFont(Font);
 	Menu1.setCharacterSize(20);
 	Menu1.setString("Play");
