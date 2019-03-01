@@ -90,6 +90,18 @@
     <ClInclude Include="resource.h">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_0.hpp">
+      <Filter>Engine Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes.hpp">
+      <Filter>Engine Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_1.hpp">
+      <Filter>Engine Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
