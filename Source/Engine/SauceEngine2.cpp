@@ -5,6 +5,7 @@
 #include "Components/GameObject.h"
 #include "SceneManager.h"
 #include "Scenes.hpp"
+#include <SFML/Audio.hpp>
 
 using namespace sf;
 
@@ -44,6 +45,18 @@ LRESULT CALLBACK onEvent(HWND handle, UINT message, WPARAM wParam, LPARAM lParam
 //int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR pArgs, INT)
 int main()
 {
+	//sf::Music music;
+	//if (!music.openFromFile("../../Assets/Music/metroid03.ogg"))
+	//	return -1; // error
+
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && isPlau)
+	//{
+	//	music.play();
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard:P))
+	//{
+	//	music.stop();
+	//}
 	HANDLE ghMutex;
 	ghMutex = CreateMutex(NULL,
 		FALSE, L"SauceEngine2");

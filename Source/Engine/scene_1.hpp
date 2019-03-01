@@ -3,7 +3,7 @@
 #include "SceneManager.h"
 
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 class scene_1 : public SceneManager
 {
 private:
@@ -15,6 +15,7 @@ public:
 	scene_1(void);
 	virtual int Run(sf::RenderWindow &App);
 };
+
 
 scene_1::scene_1(void)
 {
@@ -30,7 +31,11 @@ int scene_1::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	bool Running = true;
-
+	sf::Music music;
+	bool isPlaying = true;
+	if (!music.openFromFile("../../Assets/Music/metroid03.ogg"))
+		return -1; // error
+	music.play();
 	while (Running)
 	{
 		//Verifying events
@@ -64,6 +69,21 @@ int scene_1::Run(sf::RenderWindow &App)
 				default:
 					break;
 				}
+				if (Event.type == sf::Event::KeyPressed)
+					if (Event.key.code == sf::Keyboard::P)
+					{
+						if (isPlaying)
+						{
+							music.stop();
+							isPlaying = false;
+						}
+						else
+						{
+							music.play();
+							isPlaying = true;
+						}
+						
+					}
 			}
 		}
 
