@@ -3,6 +3,8 @@
 #include "Components/HardwareChecks.cpp"
 #include "resource.h"
 #include "Components/GameObject.h"
+#include "SceneManager.h"
+#include "Scenes.hpp"
 
 using namespace sf;
 
@@ -82,6 +84,33 @@ int main()
 				return 1;
 			else
 			{
+
+				//cin.get();
+				//Applications variables
+				std::vector<SceneManager*> Scenes;
+				int scene = 0;
+
+				//Window creation
+				sf::RenderWindow App(sf::VideoMode(640, 480, 32), "Sauce Engine 2");
+
+				//Mouse cursor no more visible
+				App.setMouseCursorVisible(false);
+
+				//Screens preparations
+				scene_0 s0;
+				Scenes.push_back(&s0);
+				scene_1 s1;
+				Scenes.push_back(&s1);
+
+				//Main loop
+				while (scene >= 0)
+				{
+					scene = Scenes[scene]->Run(App);
+				}
+				//system("PAUSE");
+				return EXIT_SUCCESS;
+
+				/*
 
 				HINSTANCE instance = GetModuleHandle(NULL);
 
@@ -173,7 +202,7 @@ int main()
 				aTest.SetPosition(sf::Vector2f(10, 10));
 				/*
 				sf::RenderWindow window({ 1024, 740 }, "Sauce Engine 2");
-				*/
+				//
 				//window.setFramerateLimit(30);
 
 				sf::RectangleShape test(sf::Vector2f (100.0f, 100.0f));
@@ -214,7 +243,7 @@ int main()
 						if (event.key.code == sf::Keyboard::Left) {
 							printf("left");
 						}
-					}*/
+					}
 					
 
 					if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
@@ -277,6 +306,7 @@ int main()
 						SFMLView3.display();
 	
 					}
+					
 				}
 				
 
@@ -305,7 +335,7 @@ int main()
 					window.display();
 
 				}
-				*/
+				
 
 
 
@@ -316,6 +346,8 @@ int main()
 				UnregisterClass(TEXT("SauceEngine2"), instance);
 
 				return EXIT_SUCCESS;
+				*/
+
 			}
 		}
 		catch (const std::exception& e)
@@ -326,6 +358,7 @@ int main()
 				L"\n\nException caught at main window creation.";
 			MessageBox(nullptr, eMsg.c_str(), L"Unhandled STL Exception", MB_OK);
 		}
+		
 	}
 	else
 	{
@@ -337,6 +370,8 @@ int main()
 	return 1;
 	}
 	return 0;
+
+	
 }
 
 
