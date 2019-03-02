@@ -1,6 +1,6 @@
-#include "ActorComponent.h"
+#include "BaseComponent.h"
 
-class PhysicsComponent : public ActorComponent
+class PhysicsComponent : public BaseComponent
 {
 public:
 	PhysicsComponent();
