@@ -208,6 +208,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClInclude Include="Scenes.hpp" />
     <ClInclude Include="scene_0.hpp" />
     <ClInclude Include="scene_1.hpp" />
+    <ClInclude Include="scene_2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Actor.cpp" />

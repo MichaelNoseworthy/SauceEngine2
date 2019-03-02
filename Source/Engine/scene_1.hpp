@@ -3,39 +3,81 @@
 #include "SceneManager.h"
 
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+
 class scene_1 : public SceneManager
 {
 private:
-	float movement_step;
-	float posx;
-	float posy;
-	sf::RectangleShape Rectangle;
+	int alpha_max;
+	int alpha_div;
+	bool playing;
 public:
 	scene_1(void);
 	virtual int Run(sf::RenderWindow &App);
 };
 
-
 scene_1::scene_1(void)
 {
-	movement_step = 5;
-	posx = 320;
-	posy = 240;
-	//Setting sprite
-	Rectangle.setFillColor(sf::Color(255, 255, 255, 150));
-	Rectangle.setSize({ 10.f, 10.f });
+	alpha_max = 3 * 255;
+	alpha_div = 3;
+	playing = false;
 }
 
 int scene_1::Run(sf::RenderWindow &App)
 {
 	sf::Event Event;
 	bool Running = true;
-	sf::Music music;
-	bool isPlaying = true;
-	if (!music.openFromFile("../../Assets/Music/metroid03.ogg"))
-		return -1; // error
-	music.play();
+	sf::Texture Texture;
+	sf::Sprite Sprite;
+	int alpha = 0;
+	sf::Font Font;
+	sf::Text Menu1;
+	sf::Text Menu2;
+	sf::Text Menu3;
+	int menu = 0;
+	//if (!Texture.loadFromFile("present.png"))
+	if (!Texture.loadFromFile("../../Assets/images/present.png"))
+		if (!Texture.loadFromFile("./Assets/images/present.png"))
+		{
+			std::cerr << "Error loading present.png" << std::endl;
+			return (-1); //can't find it at all
+		}
+	
+	/*
+	if (!Texture.loadFromFile("../../Assets/images/present.png"))
+		if (!Texture.loadFromFile("./Assets/images/present.png"))
+		{
+			std::cerr << "Error loading present.png" << std::endl;
+			return (-1); //can't find it at all
+		}
+		*/
+	Sprite.setTexture(Texture);
+	Sprite.setColor(sf::Color(255, 255, 255, alpha));
+	if (!Font.loadFromFile("../../Assets/fonts/verdanab.ttf"))
+		if (!Font.loadFromFile("./Assets/fonts/verdanab.ttf"))
+		{
+			std::cerr << "Error loading verdanab.ttf" << std::endl;
+			return (-1);
+		}
+	Menu1.setFont(Font);
+	Menu1.setCharacterSize(20);
+	Menu1.setString("Play");
+	Menu1.setPosition({ 280.f, 160.f });
+
+	Menu2.setFont(Font);
+	Menu2.setCharacterSize(20);
+	Menu2.setString("Exit");
+	Menu2.setPosition({ 280.f, 220.f });
+
+	Menu3.setFont(Font);
+	Menu3.setCharacterSize(20);
+	Menu3.setString("Continue");
+	Menu3.setPosition({ 280.f, 160.f });
+
+	if (playing)
+	{
+		alpha = alpha_max;
+	}
+
 	while (Running)
 	{
 		//Verifying events
@@ -51,60 +93,68 @@ int scene_1::Run(sf::RenderWindow &App)
 			{
 				switch (Event.key.code)
 				{
-				case sf::Keyboard::Escape:
-					return (0);
-					break;
 				case sf::Keyboard::Up:
-					posy -= movement_step;
+					menu = 0;
 					break;
 				case sf::Keyboard::Down:
-					posy += movement_step;
+					menu = 1;
 					break;
-				case sf::Keyboard::Left:
-					posx -= movement_step;
-					break;
-				case sf::Keyboard::Right:
-					posx += movement_step;
+				case sf::Keyboard::Return:
+					if (menu == 0)
+					{
+						//Let's get play !
+						playing = true;
+						return (2);
+					}
+					else
+					{
+						//Let's get work...
+						return (-1);
+					}
 					break;
 				default:
 					break;
 				}
-				if (Event.type == sf::Event::KeyPressed)
-					if (Event.key.code == sf::Keyboard::P)
-					{
-						if (isPlaying)
-						{
-							music.stop();
-							isPlaying = false;
-						}
-						else
-						{
-							music.play();
-							isPlaying = true;
-						}
-						
-					}
 			}
 		}
-
-		//Updating
-		if (posx > 630)
-			posx = 630;
-		if (posx < 0)
-			posx = 0;
-		if (posy > 470)
-			posy = 470;
-		if (posy < 0)
-			posy = 0;
-		Rectangle.setPosition({ posx, posy });
+		//When getting at alpha_max, we stop modifying the sprite
+		if (alpha < alpha_max)
+		{
+			alpha++;
+		}
+		Sprite.setColor(sf::Color(255, 255, 255, alpha / alpha_div));
+		if (menu == 0)
+		{
+			Menu1.setColor(sf::Color(255, 0, 0, 255));
+			Menu2.setColor(sf::Color(255, 255, 255, 255));
+			Menu3.setColor(sf::Color(255, 0, 0, 255));
+		}
+		else
+		{
+			Menu1.setColor(sf::Color(255, 255, 255, 255));
+			Menu2.setColor(sf::Color(255, 0, 0, 255));
+			Menu3.setColor(sf::Color(255, 255, 255, 255));
+		}
 
 		//Clearing screen
-		App.clear(sf::Color(0, 0, 0, 0));
+		App.clear();
 		//Drawing
-		App.draw(Rectangle);
+		App.draw(Sprite);
+		if (alpha == alpha_max)
+		{
+			if (playing)
+			{
+				App.draw(Menu3);
+			}
+			else
+			{
+				App.draw(Menu1);
+			}
+			App.draw(Menu2);
+		}
 		App.display();
 	}
 
 	//Never reaching this point normally, but just in case, exit the application
-	return -1;
+	return (-1);
 }

@@ -8,5 +8,6 @@
 //Including each screen of application
 #include "scene_0.hpp"
 #include "scene_1.hpp"
+#include "scene_2.hpp"
 
 #endif // SCENES_HPP_INCLUDED

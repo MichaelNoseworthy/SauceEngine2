@@ -114,6 +114,8 @@ int main()
 				Scenes.push_back(&s0);
 				scene_1 s1;
 				Scenes.push_back(&s1);
+				scene_2 s2;
+				Scenes.push_back(&s2);
 
 				//Main loop
 				while (scene >= 0)
