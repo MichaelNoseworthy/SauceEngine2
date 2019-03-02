@@ -187,6 +187,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClInclude Include="Components\ActorComponent.h" />
     <ClInclude Include="Components\AI_Component.h" />
     <ClInclude Include="Components\Ammo.h" />
+    <ClInclude Include="Components\BaseComponent.h" />
     <ClInclude Include="Components\GameObject.h" />
     <ClInclude Include="Components\GraphicsComponentInterface.h" />
     <ClInclude Include="Components\HardwareChecks.h" />
@@ -200,7 +201,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\SpecialAbility.h" />
     <ClInclude Include="Components\StatsComponent.h" />
-    <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\TransformComponent.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Mouse.h" />
@@ -217,6 +218,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClCompile Include="Components\ActorComponent.cpp" />
     <ClCompile Include="Components\AI_Component.cpp" />
     <ClCompile Include="Components\Ammo.cpp" />
+    <ClCompile Include="Components\BaseComponent.cpp" />
     <ClCompile Include="Components\GameObject.cpp" />
     <ClCompile Include="Components\GraphicsComponentInterface.cpp" />
     <ClCompile Include="Components\HardwareChecks.cpp" />
@@ -230,7 +232,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClCompile Include="Components\Rigidbody.cpp" />
     <ClCompile Include="Components\SpecialAbility.cpp" />
     <ClCompile Include="Components\StatsComponent.cpp" />
-    <ClCompile Include="Components\Transform.cpp" />
+    <ClCompile Include="Components\TransformComponent.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
