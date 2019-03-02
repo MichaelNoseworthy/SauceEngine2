@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "SceneManager.h"
+#include "AssetLoader.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -28,12 +29,8 @@ int scene_0::Run(sf::RenderWindow &App)
 	sf::Clock clock;
 
 	sf::Texture SplashScreenImage;
-	if (!SplashScreenImage.loadFromFile("../../Assets/images/SplashScreen.jpg") || !SplashScreenImage.loadFromFile("../../Assets/images/SplashScreen.jpg"))
-	{
-		//find it in the game directory instead
-		if (!SplashScreenImage.loadFromFile("./Assets/images/SplashScreen.jpg") || !SplashScreenImage.loadFromFile("./Assets/images/SplashScreen.jpg"))
-			return EXIT_FAILURE; //can't find it at all
-	}
+
+	loadAssetFromFile(SplashScreenImage, "../../Assets/images/SplashScreen.jpg", "./Assets/images/SplashScreen.jpg");
 
 	sf::Sprite SplashSprite(SplashScreenImage);
 	SplashSprite.setOrigin(sf::Vector2f(SplashScreenImage.getSize()) / 2.f);
@@ -49,7 +46,6 @@ int scene_0::Run(sf::RenderWindow &App)
 		}
 		else
 		{
-
 			App.clear(sf::Color::Blue);
 			App.draw(SplashSprite);
 			App.display();
@@ -58,8 +54,6 @@ int scene_0::Run(sf::RenderWindow &App)
 
 	//Clearing screen
 	App.clear();
-	//Drawing
-	//App.draw(Sprite);
 
 	//Never reaching this point normally, but just in case, exit the application
 	return (-1);

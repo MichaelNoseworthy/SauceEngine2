@@ -22,6 +22,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{72a07424-7421-40cf-81eb-11875bdd5c3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Keyboard.h">
@@ -96,14 +99,17 @@
     <ClInclude Include="Scenes.hpp">
       <Filter>Engine Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="scene_2.hpp">
-      <Filter>Engine Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_1.hpp">
-      <Filter>Engine Source Files</Filter>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene_0.hpp">
-      <Filter>Engine Source Files</Filter>
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_1.hpp">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_2.hpp">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Components\GameObject.cpp">
       <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

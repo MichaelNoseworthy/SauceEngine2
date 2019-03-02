@@ -33,8 +33,7 @@ int scene_2::Run(sf::RenderWindow &App)
 	bool Running = true;
 	sf::Music music;
 	bool isPlaying = true;
-	if (!music.openFromFile("../../Assets/Music/metroid03.ogg"))
-		return -1; // error
+	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
 	music.play();
 	while (Running)
 	{
