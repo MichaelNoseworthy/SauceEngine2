@@ -28,6 +28,7 @@ inline void CheckRAM()
 	outmsg += std::to_string(statexulltotal);
 	outmsg += "MB\n";
 	OutputDebugStringA(outmsg.c_str());
+	cout << "RAM Information:\n" << outmsg << endl;
 
 
 }
