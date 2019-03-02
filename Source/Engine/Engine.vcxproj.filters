@@ -84,6 +84,9 @@
     <ClInclude Include="Components\StatsComponent.h">
       <Filter>Components\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Transform.h">
+      <Filter>Components\Header</Filter>
+    </ClInclude>
     <ClInclude Include="Components\GameObject.h">
       <Filter>Components\Header</Filter>
     </ClInclude>
@@ -107,12 +110,6 @@
     </ClInclude>
     <ClInclude Include="scene_2.hpp">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\TransformComponent.h">
-      <Filter>Components\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\BaseComponent.h">
-      <Filter>Components\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -176,17 +173,14 @@
     <ClCompile Include="Components\StatsComponent.cpp">
       <Filter>Components\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components\Source</Filter>
+    </ClCompile>
     <ClCompile Include="Components\GameObject.cpp">
       <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="AssetLoader.cpp">
       <Filter>Engine Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\TransformComponent.cpp">
-      <Filter>Components\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\BaseComponent.cpp">
-      <Filter>Components\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
