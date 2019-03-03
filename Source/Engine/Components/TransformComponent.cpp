@@ -5,13 +5,13 @@
 #                                                                              #
 ##############################################################################*/
 
-#include "Transform.h"
+#include "TransformComponent.h"
 
-Transform::Transform()
+TransformComponent::TransformComponent()
 {
 }
 
 
-Transform::~Transform()
+TransformComponent::~TransformComponent()
 {
 }

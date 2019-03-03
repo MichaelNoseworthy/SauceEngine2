@@ -1,6 +1,6 @@
-#include "ActorComponent.h"
+#include "BaseComponent.h"
 
-class GraphicsComponentInterface : public ActorComponent
+class GraphicsComponentInterface : public BaseComponent
 {
 public:
 	GraphicsComponentInterface();
