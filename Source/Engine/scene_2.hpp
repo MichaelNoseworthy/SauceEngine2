@@ -46,10 +46,19 @@ public:
 
 	GameObject square;
 	sf::Texture squareTexture;
+	
 
 	GameObject root1;
 	GameObject root2;
-	sf::Texture rootTexture;	
+	sf::Texture rootTexture;
+
+	bool canGoDown = true;
+	bool canGoUp = true;
+	bool canGoRight = true;
+	bool canGoLeft = true;
+
+	int lastPressed = 0;
+	
 };
 
 
@@ -78,7 +87,7 @@ int scene_2::Run(sf::RenderWindow &App)
 	platform2.SetPosition(sf::Vector2f(550, 438));
 	platform3.SetPosition(sf::Vector2f(150, 438));
 	moon.SetPosition(sf::Vector2f(500, 100));
-	beam1.SetPosition(sf::Vector2f(450, 300));
+	beam1.SetPosition(sf::Vector2f(300, 400));
 	beam2.SetPosition(sf::Vector2f(250, 300));
 	beam3.SetPosition(sf::Vector2f(350, 200));
 	blocks1.SetPosition(sf::Vector2f(226, 410));
@@ -89,17 +98,20 @@ int scene_2::Run(sf::RenderWindow &App)
 	sphere2.SetPosition(sf::Vector2f(405, 410));
 	root1.SetPosition(sf::Vector2f(445, 410));
 	root2.SetPosition(sf::Vector2f(465, 410));
-	square.SetPosition(sf::Vector2f(320, 240));
+	square.SetPosition(sf::Vector2f(320, 245));
 
+	/*
 	if (!squareTexture.loadFromFile("../../Assets/images/scene1/square.jpg"))
 	{
 		//find it in the game directory instead
 		if (!squareTexture.loadFromFile("./Assets/images/scene1/square.jpg"))
 			return EXIT_FAILURE; //can't find it at all
-	}
+	}*/
+
+	Collision::CreateTextureAndBitmask(squareTexture, "../../Assets/images/scene1/square.jpg");
 
 	square.sprite.setTexture(squareTexture);
-	square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));		
+	//square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));		
 
 	if (!backgroundTexture.loadFromFile("../../Assets/images/scene1/background800x600.jpg"))
 	{
@@ -173,12 +185,15 @@ int scene_2::Run(sf::RenderWindow &App)
 	blocks3.sprite.setTexture(blocksTexture);
 	blocks3.sprite.setOrigin(sf::Vector2f(blocks3.sprite.getTexture()->getSize().x*0.5f, blocks3.sprite.getTexture()->getSize().y*0.5f));
 
+	/*
 	if (!beam1Texture.loadFromFile("../../Assets/images/scene1/platformBlue.png"))
 	{
 		//find it in the game directory instead
 		if (!beam1Texture.loadFromFile("./Assets/images/scene1/platformBlue.png"))
 			return EXIT_FAILURE; //can't find it at all
-	}
+	}*/
+
+	Collision::CreateTextureAndBitmask(beam1Texture, "../../Assets/images/scene1/platformBlue.png");
 
 	beam1.sprite.setTexture(beam1Texture);
 	beam1.sprite.setOrigin(sf::Vector2f(beam1.sprite.getTexture()->getSize().x*0.5f, beam1.sprite.getTexture()->getSize().y*0.5f));
@@ -225,22 +240,25 @@ int scene_2::Run(sf::RenderWindow &App)
 					break;
 				case sf::Keyboard::Up:
 					//					
+					lastPressed = 0;
+					canGoDown = true;
 					posy -= movement_step;
 					break;
 				case sf::Keyboard::Down:
-					posy += movement_step;
-					if (square.sprite.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds()))
-						posy -= movement_step;
-					/*	|| (!square.sprite.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds())))
-						|| !square.sprite.getGlobalBounds().intersects(platform.sprite.getGlobalBounds())
-						|| !square.sprite.getGlobalBounds().intersects(platform2.sprite.getGlobalBounds())
-						|| !square.sprite.getGlobalBounds().intersects(platform3.sprite.getGlobalBounds()))*/
-						
+					lastPressed = 2;
+					canGoUp = true;
+					if (canGoDown) {
+						posy += movement_step;
+					}						
 					break;
 				case sf::Keyboard::Left:
+					lastPressed = 3;
+					canGoRight = true;
 					posx -= movement_step;
 					break;
 				case sf::Keyboard::Right:
+					lastPressed = 1;
+					canGoLeft = true;
 					posx += movement_step;
 					break;
 				default:
@@ -263,6 +281,18 @@ int scene_2::Run(sf::RenderWindow &App)
 					}
 			}
 		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform.sprite) && lastPressed == 2) {
+			cout << "changeing" << endl;
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform.sprite) && lastPressed == 2) {
+			cout << "changeing" << endl;
+			canGoDown = false;
+		}
+
+
 
 		//Updating
 		if (posx > 630)
