@@ -64,7 +64,7 @@ public:
 
 scene_2::scene_2(void)
 {
-	movement_step = 1;
+	movement_step = 4;
 	posx = 320;
 	posy = 240;
 	//Setting sprite
