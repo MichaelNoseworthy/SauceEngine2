@@ -207,8 +207,8 @@ int scene_2::Run(sf::RenderWindow &App)
 					return (1); 
 					break;
 				case sf::Keyboard::Up:
-					//if (!Rectangle.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds()))
-						// || !Rectangle.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds()) || !Rectangle.getGlobalBounds().intersects(beam3.sprite.getGlobalBounds()
+					if (!Rectangle.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds()))
+						 //|| !Rectangle.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds()) || !Rectangle.getGlobalBounds().intersects(beam3.sprite.getGlobalBounds()
 					posy -= movement_step;
 					break;
 				case sf::Keyboard::Down:

@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include <windows.h>
 #include "Components/HardwareChecks.cpp"
 #include "resource.h"
