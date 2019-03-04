@@ -114,6 +114,9 @@
     <ClInclude Include="Components\BaseComponent.h">
       <Filter>Components\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="Components\BaseComponent.cpp">
       <Filter>Components\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

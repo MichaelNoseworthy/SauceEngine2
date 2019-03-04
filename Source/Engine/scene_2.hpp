@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <limits>
+#include "Collision.h"
 
 
 class scene_2 : public SceneManager
@@ -48,8 +49,7 @@ public:
 
 	GameObject root1;
 	GameObject root2;
-	sf::Texture rootTexture;
-
+	sf::Texture rootTexture;	
 };
 
 
@@ -60,7 +60,7 @@ scene_2::scene_2(void)
 	posy = 240;
 	//Setting sprite
 	Rectangle.setFillColor(sf::Color(255, 255, 255, 150));
-	Rectangle.setSize({ 10.f, 10.f });
+	Rectangle.setSize({ 10.f, 10.f });	
 }
 
 int scene_2::Run(sf::RenderWindow &App)
@@ -99,7 +99,7 @@ int scene_2::Run(sf::RenderWindow &App)
 	}
 
 	square.sprite.setTexture(squareTexture);
-	square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));
+	square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));		
 
 	if (!backgroundTexture.loadFromFile("../../Assets/images/scene1/background800x600.jpg"))
 	{
@@ -224,18 +224,18 @@ int scene_2::Run(sf::RenderWindow &App)
 					return (1);
 					break;
 				case sf::Keyboard::Up:
-					//|| !Rectangle.getGlobalBounds().intersects(platform.sprite.getGlobalBounds()) || !Rectangle.getGlobalBounds().intersects(platform.sprite.getGlobalBounds()
-
+					//					
 					posy -= movement_step;
 					break;
 				case sf::Keyboard::Down:
-					if (!square.sprite.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds())
-						|| !square.sprite.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds())
-						|| !square.sprite.getGlobalBounds().intersects(beam3.sprite.getGlobalBounds())
+					posy += movement_step;
+					if (square.sprite.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds()))
+						posy -= movement_step;
+					/*	|| (!square.sprite.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds())))
 						|| !square.sprite.getGlobalBounds().intersects(platform.sprite.getGlobalBounds())
 						|| !square.sprite.getGlobalBounds().intersects(platform2.sprite.getGlobalBounds())
-						|| !square.sprite.getGlobalBounds().intersects(platform3.sprite.getGlobalBounds()))
-						posy += movement_step;
+						|| !square.sprite.getGlobalBounds().intersects(platform3.sprite.getGlobalBounds()))*/
+						
 					break;
 				case sf::Keyboard::Left:
 					posx -= movement_step;
@@ -289,7 +289,7 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(beam1.sprite);
 		App.draw(beam2.sprite);
 		App.draw(pelton.sprite);
-		App.draw(beam3.sprite);
+	//	App.draw(beam3.sprite);
 		App.draw(blocks1.sprite);
 		App.draw(blocks2.sprite);
 		App.draw(blocks3.sprite);

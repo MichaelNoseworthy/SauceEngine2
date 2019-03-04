@@ -185,6 +185,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Components\Actor.h" />
     <ClInclude Include="Components\ActorComponent.h" />
     <ClInclude Include="Components\AI_Component.h" />
@@ -216,6 +217,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Components\Actor.cpp" />
     <ClCompile Include="Components\ActorComponent.cpp" />
     <ClCompile Include="Components\AI_Component.cpp" />
