@@ -1,14 +1,16 @@
 #include "AssetLoader.h"
 
+bool exitProgram = false;
+
 
 void loadAssetFromFile(sf::Texture& asset, std::string FileLocation1, std::string FileLocation2)
 {
-	//Collision::CreateTextureAndBitmask(asset, FileLocation1);
 
 	if(!Collision::CreateTextureAndBitmask(asset, FileLocation1))
-		if (Collision::CreateTextureAndBitmask(asset, FileLocation2))
+		if (!Collision::CreateTextureAndBitmask(asset, FileLocation2))
 		{
 			std::cerr << "Error loading " << FileLocation2 << std::endl;
+			if (exitProgram)
 			exit(-1);
 		}
 }
@@ -19,6 +21,7 @@ void loadAssetFromFile(sf::Font& asset, std::string FileLocation1, std::string F
 		if (!asset.loadFromFile(FileLocation2))
 		{
 			std::cerr << "Error loading " << FileLocation2 << std::endl;
+			if (exitProgram)
 			exit(-1);
 		}
 }
@@ -28,6 +31,7 @@ void loadAssetFromFile(sf::Music& asset, std::string FileLocation1, std::string 
 		if (!asset.openFromFile(FileLocation2))
 		{
 			std::cerr << "Error loading " << FileLocation2 << std::endl;
+			if (exitProgram)
 			exit(-1);
 		}
 }
@@ -38,6 +42,7 @@ void loadAssetFromFile(sf::SoundBuffer& asset, std::string FileLocation1, std::s
 		if (!asset.loadFromFile(FileLocation2))
 		{
 			std::cerr << "Error loading " << FileLocation2 << std::endl;
+			if (exitProgram)
 			exit(-1);
 		}
 }
