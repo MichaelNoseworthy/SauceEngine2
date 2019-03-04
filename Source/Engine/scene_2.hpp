@@ -64,7 +64,7 @@ public:
 
 scene_2::scene_2(void)
 {
-	movement_step = 5;
+	movement_step = 1;
 	posx = 320;
 	posy = 240;
 	//Setting sprite
@@ -79,7 +79,7 @@ int scene_2::Run(sf::RenderWindow &App)
 	sf::Music music;
 	bool isPlaying = true;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
-	//music.play();
+	music.play();
 
 	background.SetPosition(sf::Vector2f(0, 0));
 
@@ -87,8 +87,8 @@ int scene_2::Run(sf::RenderWindow &App)
 	platform2.SetPosition(sf::Vector2f(550, 438));
 	platform3.SetPosition(sf::Vector2f(150, 438));
 	moon.SetPosition(sf::Vector2f(500, 100));
-	beam1.SetPosition(sf::Vector2f(450, 300));
-	beam2.SetPosition(sf::Vector2f(250, 300));
+	beam1.SetPosition(sf::Vector2f(450, 305));
+	beam2.SetPosition(sf::Vector2f(250, 305));
 	beam3.SetPosition(sf::Vector2f(350, 200));
 	blocks1.SetPosition(sf::Vector2f(226, 410));
 	blocks2.SetPosition(sf::Vector2f(266, 410));
@@ -246,14 +246,17 @@ int scene_2::Run(sf::RenderWindow &App)
 					if (canGoUp) {
 						posy -= movement_step;
 						canGoDown = true;
+						canGoRight = true;
+						canGoLeft = true;
 					}
-
 					break;
 				case sf::Keyboard::Down:
 					lastPressed = 2;
 					if (canGoDown) {
 						posy += movement_step;
 						canGoUp = true;
+						canGoRight = true;
+						canGoLeft = true;
 					}
 					break;
 				case sf::Keyboard::Left:
@@ -261,13 +264,17 @@ int scene_2::Run(sf::RenderWindow &App)
 					if (canGoLeft) {
 						posx -= movement_step;
 						canGoRight = true;
+						canGoUp = true;
+						canGoDown = true;
 					}					
 					break;
 				case sf::Keyboard::Right:
 					lastPressed = 1;
 					if (canGoRight) {
 						posx += movement_step;
-						canGoLeft = true;
+						canGoLeft = true;						
+						canGoUp = true;
+						canGoDown = true;
 					}					
 					break;
 				default:
@@ -295,6 +302,42 @@ int scene_2::Run(sf::RenderWindow &App)
 			canGoDown = false;
 		}
 
+		if (Collision::BoundingBoxTest(square.sprite, platform2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, blocks1.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, blocks2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, root1.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, root2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, sphere1.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, sphere2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, blocks3.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform3.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
 		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 2) {
 			canGoDown = false;
 		}
@@ -303,11 +346,47 @@ int scene_2::Run(sf::RenderWindow &App)
 			canGoUp = false;
 		}
 
+		if (Collision::BoundingBoxTest(square.sprite, sphere1.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, sphere1.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, root1.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, root2.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
 		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 1) {
 			canGoRight = false;
 		}
 
-		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 3) {
+		if (Collision::BoundingBoxTest(square.sprite, platform2.sprite) && lastPressed == 1) {
+			canGoRight = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform3.sprite) && lastPressed == 1) {
+			canGoRight = false;
+		}
+
+		if (Collision::PixelPerfectTest(square.sprite, beam1.sprite) && lastPressed == 3) {
+			canGoLeft = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform2.sprite) && lastPressed == 3) {
+			canGoLeft = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform.sprite) && lastPressed == 3) {
+			canGoLeft = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, platform3.sprite) && lastPressed == 3) {
 			canGoLeft = false;
 		}
 
@@ -326,8 +405,6 @@ int scene_2::Run(sf::RenderWindow &App)
 		if (Collision::BoundingBoxTest(square.sprite, beam2.sprite) && lastPressed == 3) {
 			canGoLeft = false;
 		}
-
-
 
 		//Updating
 		if (posx > 630)
@@ -351,8 +428,8 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(platform3.sprite);
 		//App.draw(Rectangle);
 		App.draw(moon.sprite);
-		App.draw(beam1.sprite);
-		App.draw(beam2.sprite);
+	//	App.draw(beam1.sprite);
+	//	App.draw(beam2.sprite);
 		App.draw(pelton.sprite);
 	//	App.draw(beam3.sprite);
 		App.draw(blocks1.sprite);
