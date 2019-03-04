@@ -87,7 +87,7 @@ int scene_2::Run(sf::RenderWindow &App)
 	platform2.SetPosition(sf::Vector2f(550, 438));
 	platform3.SetPosition(sf::Vector2f(150, 438));
 	moon.SetPosition(sf::Vector2f(500, 100));
-	beam1.SetPosition(sf::Vector2f(300, 400));
+	beam1.SetPosition(sf::Vector2f(450, 300));
 	beam2.SetPosition(sf::Vector2f(250, 300));
 	beam3.SetPosition(sf::Vector2f(350, 200));
 	blocks1.SetPosition(sf::Vector2f(226, 410));
@@ -243,25 +243,32 @@ int scene_2::Run(sf::RenderWindow &App)
 				case sf::Keyboard::Up:
 					//					
 					lastPressed = 0;
-					canGoDown = true;
-					posy -= movement_step;
+					if (canGoUp) {
+						posy -= movement_step;
+						canGoDown = true;
+					}
+
 					break;
 				case sf::Keyboard::Down:
 					lastPressed = 2;
-					canGoUp = true;
 					if (canGoDown) {
 						posy += movement_step;
-					}						
+						canGoUp = true;
+					}
 					break;
 				case sf::Keyboard::Left:
 					lastPressed = 3;
-					canGoRight = true;
-					posx -= movement_step;
+					if (canGoLeft) {
+						posx -= movement_step;
+						canGoRight = true;
+					}					
 					break;
 				case sf::Keyboard::Right:
 					lastPressed = 1;
-					canGoLeft = true;
-					posx += movement_step;
+					if (canGoRight) {
+						posx += movement_step;
+						canGoLeft = true;
+					}					
 					break;
 				default:
 					break;
@@ -285,13 +292,39 @@ int scene_2::Run(sf::RenderWindow &App)
 		}
 
 		if (Collision::BoundingBoxTest(square.sprite, platform.sprite) && lastPressed == 2) {
-			cout << "changeing" << endl;
 			canGoDown = false;
 		}
 
-		if (Collision::BoundingBoxTest(square.sprite, platform.sprite) && lastPressed == 2) {
-			cout << "changeing" << endl;
+		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 2) {
 			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 1) {
+			canGoRight = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam1.sprite) && lastPressed == 3) {
+			canGoLeft = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam2.sprite) && lastPressed == 0) {
+			canGoUp = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam2.sprite) && lastPressed == 1) {
+			canGoRight = false;
+		}
+
+		if (Collision::BoundingBoxTest(square.sprite, beam2.sprite) && lastPressed == 3) {
+			canGoLeft = false;
 		}
 
 
