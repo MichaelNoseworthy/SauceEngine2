@@ -3,8 +3,10 @@
 
 void loadAssetFromFile(sf::Texture& asset, std::string FileLocation1, std::string FileLocation2)
 {
-	if(!asset.loadFromFile(FileLocation1))
-		if (!asset.loadFromFile(FileLocation2))
+	//Collision::CreateTextureAndBitmask(asset, FileLocation1);
+
+	if(!Collision::CreateTextureAndBitmask(asset, FileLocation1))
+		if (Collision::CreateTextureAndBitmask(asset, FileLocation2))
 		{
 			std::cerr << "Error loading " << FileLocation2 << std::endl;
 			exit(-1);

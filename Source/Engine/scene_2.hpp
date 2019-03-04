@@ -108,7 +108,9 @@ int scene_2::Run(sf::RenderWindow &App)
 			return EXIT_FAILURE; //can't find it at all
 	}*/
 
-	Collision::CreateTextureAndBitmask(squareTexture, "../../Assets/images/scene1/square.jpg");
+	loadAssetFromFile(squareTexture, "../../Assets/images/scene1/square.jpg", "./Assets/images/scene1/square.jpg");
+
+	//Collision::CreateTextureAndBitmask(squareTexture, "../../Assets/images/scene1/square.jpg");
 
 	square.sprite.setTexture(squareTexture);
 	//square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));		

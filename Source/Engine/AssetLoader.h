@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <windows.h>
+#include "Collision.h"
 
 void loadAssetFromFile(sf::Texture& asset, std::string FileLocation1, std::string FileLocation2);
 void loadAssetFromFile(sf::Font& asset, std::string FileLocation1, std::string FileLocation2); 
