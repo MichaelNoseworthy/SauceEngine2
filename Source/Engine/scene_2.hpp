@@ -4,6 +4,9 @@
 #include "Components/GameObject.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <limits>
+
+
 class scene_2 : public SceneManager
 {
 private:
@@ -38,12 +41,15 @@ public:
 
 	GameObject sphere1;
 	GameObject sphere2;
-	sf::Texture sphereTexture;	
+	sf::Texture sphereTexture;
+
+	GameObject square;
+	sf::Texture squareTexture;
 
 	GameObject root1;
 	GameObject root2;
 	sf::Texture rootTexture;
-	
+
 };
 
 
@@ -83,6 +89,17 @@ int scene_2::Run(sf::RenderWindow &App)
 	sphere2.SetPosition(sf::Vector2f(405, 410));
 	root1.SetPosition(sf::Vector2f(445, 410));
 	root2.SetPosition(sf::Vector2f(465, 410));
+	square.SetPosition(sf::Vector2f(320, 240));
+
+	if (!squareTexture.loadFromFile("../../Assets/images/scene1/square.jpg"))
+	{
+		//find it in the game directory instead
+		if (!squareTexture.loadFromFile("./Assets/images/scene1/square.jpg"))
+			return EXIT_FAILURE; //can't find it at all
+	}
+
+	square.sprite.setTexture(squareTexture);
+	square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));
 
 	if (!backgroundTexture.loadFromFile("../../Assets/images/scene1/background800x600.jpg"))
 	{
@@ -204,15 +221,21 @@ int scene_2::Run(sf::RenderWindow &App)
 				switch (Event.key.code)
 				{
 				case sf::Keyboard::Escape:
-					return (1); 
+					return (1);
 					break;
 				case sf::Keyboard::Up:
-					if (!Rectangle.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds()))
-						 //|| !Rectangle.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds()) || !Rectangle.getGlobalBounds().intersects(beam3.sprite.getGlobalBounds()
+					//|| !Rectangle.getGlobalBounds().intersects(platform.sprite.getGlobalBounds()) || !Rectangle.getGlobalBounds().intersects(platform.sprite.getGlobalBounds()
+
 					posy -= movement_step;
 					break;
 				case sf::Keyboard::Down:
-					posy += movement_step;
+					if (!square.sprite.getGlobalBounds().intersects(beam1.sprite.getGlobalBounds())
+						|| !square.sprite.getGlobalBounds().intersects(beam2.sprite.getGlobalBounds())
+						|| !square.sprite.getGlobalBounds().intersects(beam3.sprite.getGlobalBounds())
+						|| !square.sprite.getGlobalBounds().intersects(platform.sprite.getGlobalBounds())
+						|| !square.sprite.getGlobalBounds().intersects(platform2.sprite.getGlobalBounds())
+						|| !square.sprite.getGlobalBounds().intersects(platform3.sprite.getGlobalBounds()))
+						posy += movement_step;
 					break;
 				case sf::Keyboard::Left:
 					posx -= movement_step;
@@ -236,7 +259,7 @@ int scene_2::Run(sf::RenderWindow &App)
 							music.play();
 							isPlaying = true;
 						}
-						
+
 					}
 			}
 		}
@@ -250,7 +273,9 @@ int scene_2::Run(sf::RenderWindow &App)
 			posy = 470;
 		if (posy < 0)
 			posy = 0;
-		Rectangle.setPosition({ posx, posy });
+		//Rectangle.setPosition({ posx, posy });
+
+		square.sprite.setPosition({ posx, posy });
 
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
@@ -259,7 +284,7 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(platform.sprite);
 		App.draw(platform2.sprite);
 		App.draw(platform3.sprite);
-		App.draw(Rectangle);
+		//App.draw(Rectangle);
 		App.draw(moon.sprite);
 		App.draw(beam1.sprite);
 		App.draw(beam2.sprite);
@@ -272,6 +297,7 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(sphere1.sprite);
 		App.draw(root2.sprite);
 		App.draw(root1.sprite);
+		App.draw(square.sprite);
 		App.display();
 	}
 
