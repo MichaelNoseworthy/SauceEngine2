@@ -6,6 +6,7 @@
 #include <limits>
 #include "Collision.h"
 #include "Player.h"
+#include "Platform.h"
 
 class scene_3 : public SceneManager
 {
@@ -13,18 +14,20 @@ private:
 	float movement_step;
 	float posx;
 	float posy;
-	Player player;
+	float deltaTime;	
 	GameObject background;
+	
 	sf::Texture backgroundTexture;
 	sf::Texture playerTexture;
+	sf::Clock clock;
 public:
 	scene_3(void);
 	virtual int Run(sf::RenderWindow &App);	
 };
 
 scene_3::scene_3(void)	
-{
-	//Player(&playerTexture, sf::Vector2u(0, 0), 0.3, 100);
+{	
+	deltaTime = 0;
 }
 
 int scene_3::Run(sf::RenderWindow &App)
@@ -35,6 +38,10 @@ int scene_3::Run(sf::RenderWindow &App)
 	bool isPlaying = true;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
 	//music.play();
+	
+	//texture then size then position
+	Platform platform1(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(150.0f, 300.0f));
+	Platform platform2(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(450.0f, 300.0f));
 
 	background.SetPosition(sf::Vector2f(0, 0));
 	
@@ -53,15 +60,17 @@ int scene_3::Run(sf::RenderWindow &App)
 		if (!backgroundTexture.loadFromFile("./Assets/images/scene2/player.jpg"))
 			return EXIT_FAILURE; //can't find it at all
 	}
-
-	player = Player(&playerTexture, sf::Vector2u(10, 10), 0.3, 100);
+		
+	Player player(&playerTexture, sf::Vector2u(1, 1), 0.3, 100, 200); //texture, animation stuff, timer for animation, power to push in case needed and jumpforce
 
 	player.SetPosition(sf::Vector2f(0, 0));
-	
-
 
 	while (Running)
-	{
+	{	
+		deltaTime = clock.restart().asSeconds();
+		if (deltaTime > 1.0f / 20.0f) {
+			deltaTime = 1.0f / 20.0f;
+		}
 		//Verifying events
 		while (App.pollEvent(Event))
 		{
@@ -79,7 +88,8 @@ int scene_3::Run(sf::RenderWindow &App)
 					return (1);
 					break;
 				case sf::Keyboard::Up:
-					//					
+					//
+					
 					
 					break;
 				case sf::Keyboard::Down:
@@ -110,26 +120,26 @@ int scene_3::Run(sf::RenderWindow &App)
 
 					}
 			}
+			
 		}
 
-	
-		//Updating
-	/*	if (posx > 630)
-			posx = 630;
-		if (posx < 0)
-			posx = 0;
-		if (posy > 470)
-			posy = 470;
-		if (posy < 0)
-			posy = 0;*/
-		//Rectangle.setPosition({ posx, posy });
+		player.Update(deltaTime);
 
-		/*square.sprite.setPosition({ posx, posy });*/
+		sf::Vector2f direction;
+
+		if (platform1.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
+			player.OnCollision(direction);
+		}
+		if (platform2.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
+			player.OnCollision(direction);
+		}
 
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
 		//Drawing
 		App.draw(background.sprite);
+		platform1.Draw(App);
+		platform2.Draw(App);
 		player.Draw(App);
 		App.display();
 	}

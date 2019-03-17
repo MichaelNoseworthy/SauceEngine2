@@ -1,7 +1,8 @@
 #include <SFML\Graphics.hpp>
 #include "Collider.h"
+#include "Components/GameObject.h"
 
-class Platform
+class Platform :public GameObject
 {
 public:
 	Platform::Platform(sf::Texture* texture, sf::Vector2f size, sf::Vector2f position);;
