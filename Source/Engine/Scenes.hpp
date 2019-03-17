@@ -10,6 +10,7 @@
 #include "scene_0.hpp"
 #include "scene_1.hpp"
 #include "scene_2.hpp"
+#include "scene_3.hpp"
 
 #endif // SCENES_HPP_INCLUDED
 
@@ -23,7 +24,7 @@ void beginGame()
 	App.setMouseCursorVisible(false);
 	//Applications variables
 	std::vector<SceneManager*> Scenes;
-	int scene = 0; //Change scene start point.  Leave at 0!
+	int scene = 3; //Change scene start point.  Leave at 0!
 
 
 	//Screens preparations - Add more scenes here
@@ -33,6 +34,8 @@ void beginGame()
 	Scenes.push_back(&s1);
 	scene_2 s2;
 	Scenes.push_back(&s2);
+	scene_3 s3;
+	Scenes.push_back(&s3);
 
 	//Main loop
 	while (scene >= 0)

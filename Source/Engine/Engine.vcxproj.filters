@@ -117,6 +117,18 @@
     <ClInclude Include="Collision.h">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_3.hpp">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -192,6 +204,15 @@
       <Filter>Components\Source</Filter>
     </ClCompile>
     <ClCompile Include="Collision.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
       <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>

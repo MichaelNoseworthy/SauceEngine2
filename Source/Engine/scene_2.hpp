@@ -81,6 +81,8 @@ int scene_2::Run(sf::RenderWindow &App)
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
 	music.play();
 
+
+
 	background.SetPosition(sf::Vector2f(0, 0));
 
 	platform.SetPosition(sf::Vector2f(330, 438));
