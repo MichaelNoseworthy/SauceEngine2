@@ -1,3 +1,10 @@
+/*##############################################################################
+#                                                                              #
+# Copyright 2018 Sauce Pig All Rights Reserved.                                #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #include <iostream>
 #include "SceneManager.h"
 #include "Components/GameObject.h"
@@ -20,6 +27,8 @@ private:
 	sf::Texture backgroundTexture;
 	sf::Texture playerTexture;
 	sf::Clock clock;
+	sf::View view;
+	sf::View defaultView;
 public:
 	scene_3(void);
 	virtual int Run(sf::RenderWindow &App);	
@@ -38,7 +47,6 @@ int scene_3::Run(sf::RenderWindow &App)
 	bool isPlaying = true;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
 	//music.play();
-	
 	//texture then size then position
 	Platform platform1(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(150.0f, 300.0f));
 	Platform platform2(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(450.0f, 300.0f));
@@ -85,6 +93,8 @@ int scene_3::Run(sf::RenderWindow &App)
 				switch (Event.key.code)
 				{
 				case sf::Keyboard::Escape:
+					defaultView = App.getDefaultView();
+					App.setView(defaultView);
 					return (1);
 					break;
 				case sf::Keyboard::Up:
@@ -124,6 +134,7 @@ int scene_3::Run(sf::RenderWindow &App)
 		}
 
 		player.Update(deltaTime);
+		view.setCenter(player.GetPosition());
 
 		sf::Vector2f direction;
 
@@ -136,6 +147,8 @@ int scene_3::Run(sf::RenderWindow &App)
 
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
+		App.setView(view);
+		view.setViewport(sf::FloatRect(-0.5f, -0.5f, 2.0f, 2.0f));
 		//Drawing
 		App.draw(background.sprite);
 		platform1.Draw(App);

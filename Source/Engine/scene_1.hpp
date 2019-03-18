@@ -127,7 +127,7 @@ int scene_1::Run(sf::RenderWindow &App)
 					{
 						//Let's get play !
 						playing = true;
-						return (2);
+						return (3);
 					}
 					else
 					{
