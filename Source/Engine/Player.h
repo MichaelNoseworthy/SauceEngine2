@@ -29,6 +29,7 @@ private:
 	sf::Vector2f velocity;
 	bool canJump;
 	float jumpHeight;
+	bool useGravity = true;
 
 };
 

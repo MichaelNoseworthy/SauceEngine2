@@ -60,6 +60,7 @@ void Player::Update(float deltaTime)
 		velocity.y = -sqrt(2.0f * 98.1f * jumpHeight);
 	}
 
+	if (useGravity == true)
 	velocity.y += 98.1f * deltaTime;
 
 	body.move(velocity * deltaTime);
