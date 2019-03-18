@@ -1,3 +1,10 @@
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #pragma once
 #include <iostream>
 #include "SceneManager.h"
@@ -79,6 +86,8 @@ int scene_2::Run(sf::RenderWindow &App)
 	sf::Music music;
 	bool isPlaying = true;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
+	//AssetManager::loadMusic("metroidMusic", "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
+	//music.openFromFile(*AssetManager::getMusic("metroidMusic"));
 	music.play();
 
 

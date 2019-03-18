@@ -1,3 +1,10 @@
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #pragma once
 #include <iostream>
 #include "SceneManager.h"
@@ -35,7 +42,15 @@ int scene_0::Run(sf::RenderWindow &App)
 	sf::Sprite SplashSprite(SplashScreenImage);
 	SplashSprite.setOrigin(sf::Vector2f(SplashScreenImage.getSize()) / 2.f);
 	SplashSprite.setPosition(SplashSprite.getOrigin());
+	sf::Sound canaryIntro;
+	sf::SoundBuffer buffer;
+	if (!buffer.loadFromFile("../../Assets/Sounds/canary.wav"))
+	{
 
+	}
+	canaryIntro.setBuffer(buffer);
+
+	bool playOnce = false;
 
 	while (true)
 	{
@@ -49,6 +64,12 @@ int scene_0::Run(sf::RenderWindow &App)
 			App.clear(sf::Color::Blue);
 			App.draw(SplashSprite);
 			App.display();
+
+			if (elapsed1 >= sf::seconds(0.5f) && playOnce == false)
+			{
+				playOnce = true;
+				canaryIntro.play();
+			}
 		}
 	}
 

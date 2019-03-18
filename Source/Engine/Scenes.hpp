@@ -1,3 +1,10 @@
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #pragma once
 #ifndef SCENES_HPP_INCLUDED
 #define SCENES_HPP_INCLUDED
@@ -24,7 +31,7 @@ void beginGame()
 	App.setMouseCursorVisible(false);
 	//Applications variables
 	std::vector<SceneManager*> Scenes;
-	int scene = 3; //Change scene start point.  Leave at 0!
+	int scene = 0; //Change scene start point.  Leave at 0!
 
 
 	//Screens preparations - Add more scenes here

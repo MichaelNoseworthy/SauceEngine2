@@ -129,6 +129,12 @@
     <ClInclude Include="scene_3.hpp">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="AssetManager2.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -213,6 +219,15 @@
       <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Platform.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager2.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
       <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>

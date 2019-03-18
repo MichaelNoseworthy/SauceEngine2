@@ -5,6 +5,14 @@
 #                                                                              #
 ##############################################################################*/
 
-#include "EventHandler.h"
+#pragma once;
+#include "AssetManager.h"
 
+//The purpose of this is to load all the assets when the game starts.
 
+/*
+void loadAssetResources()
+{
+	AssetManager::loadTexture("test", "../../Assets/images/present.png");
+}
+*/

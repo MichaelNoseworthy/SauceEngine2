@@ -1,11 +1,10 @@
-/*
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-#include "luaconf.h"
-#include "lua.hpp"
-}*/
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #include "sol.hpp"
 #include <SFML/Graphics.hpp>
 #include <windows.h>
@@ -13,7 +12,11 @@ extern "C" {
 #include "resource.h"
 #include "SceneManager.h"
 #include "Scenes.hpp"
+//#include "AssetManager.h"
+#include "Assets.cpp"
 #pragma comment( lib, "Lua" )
+
+//static AssetManager Assets;
 
 HWND button;
 sf::Event event;
@@ -102,12 +105,18 @@ int main()
 					}
 					else
 					{
+						/* Test lua
 						sol::state lua;
 
 						lua["message"] = [](const std::string& msg) {
 							MessageBoxA(nullptr, msg.c_str(), "Lua Message", MB_OK);
 						};
 						lua.do_string("message('Howdy, from Lua!')");
+						*/
+						
+						//loadAssetResources();
+
+
 						beginGame();
 						//system("PAUSE");  //Enable me for debugging purposes.  Must be using console window.
 						return EXIT_SUCCESS; //Program ended properly

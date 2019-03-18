@@ -185,6 +185,8 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AssetManager2.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Components\Actor.h" />
@@ -221,6 +223,8 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="AssetManager2.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Components\Actor.cpp" />
@@ -248,6 +252,7 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SauceEngine2.cpp" />
+    <ClCompile Include="Assets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Assets\Sauce.ico" />

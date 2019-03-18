@@ -1,9 +1,20 @@
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #pragma once
 #include <iostream>
 #include "SceneManager.h"
 #include "AssetLoader.h"
+//#include "AssetManager.h"
 
 #include <SFML/Graphics.hpp>
+
+//extern AssetManager Assets;
+
 
 class scene_1 : public SceneManager
 {
@@ -35,27 +46,53 @@ int scene_1::Run(sf::RenderWindow &App)
 	sf::Text Menu2;
 	sf::Text Menu3;
 	int menu = 0;
+	
 
-	loadAssetFromFile(Texture, "../../Assets/images/present.png", "./Assets/images/present.png");
+	//loadAssetFromFile(Texture, "../../Assets/images/present.png", "./Assets/images/present.png");
 
-	Sprite.setTexture(Texture);
+	/*
+	sf::Sprite Sprite2;
+	//sf::Texture Texture2;
+	//Sprite2.setColor(sf::Color(255, 255, 255, alpha));
+	Sprite2.setColor(sf::Color(255, 255, 255, alpha / alpha_div));
+	Sprite2.setPosition({ 380.f, 220.f });
+	*/
+
+
+	
+
+	AssetManager::loadTexture("present", "../../Assets/images/present.png", "./Assets/images/present.png");
+	Sprite.setTexture(*AssetManager::getTexture("present"));
+	//Sprite.setTexture(Texture);
 	Sprite.setColor(sf::Color(255, 255, 255, alpha));
 
-	loadAssetFromFile(Font, "../../Assets/fonts/verdanab.ttf", "./Assets/fonts/verdanab.ttf");
-	Menu1.setFont(Font);
+	
+
+	//loadAssetFromFile(Font, "../../Assets/fonts/verdanab.ttf", "./Assets/fonts/verdanab.ttf");
+	AssetManager::loadFont("verdanab", "../../Assets/fonts/verdanab.ttf", "./Assets/fonts/verdanab.ttf");
+	Menu1.setFont(*AssetManager::getFont("verdanab"));
 	Menu1.setCharacterSize(20);
 	Menu1.setString("Play");
 	Menu1.setPosition({ 280.f, 160.f });
 
-	Menu2.setFont(Font);
+	Menu2.setFont(*AssetManager::getFont("verdanab"));
 	Menu2.setCharacterSize(20);
 	Menu2.setString("Exit");
 	Menu2.setPosition({ 280.f, 220.f });
 
-	Menu3.setFont(Font);
+	Menu3.setFont(*AssetManager::getFont("verdanab"));
 	Menu3.setCharacterSize(20);
 	Menu3.setString("Continue");
 	Menu3.setPosition({ 280.f, 160.f });
+
+	sf::Sound dingSound;
+	sf::SoundBuffer buffer2;
+	loadAssetFromFile(buffer2, "../../Assets/Sounds/ding_on.wav", "../../Assets/Sounds/ding_on.wav");
+	dingSound.setBuffer(buffer2);
+
+	//ding_on.wav
+
+	
 
 	if (playing)
 	{
@@ -79,9 +116,11 @@ int scene_1::Run(sf::RenderWindow &App)
 				{
 				case sf::Keyboard::Up:
 					menu = 0;
+					dingSound.play();
 					break;
 				case sf::Keyboard::Down:
 					menu = 1;
+					dingSound.play();
 					break;
 				case sf::Keyboard::Return:
 					if (menu == 0)
@@ -123,6 +162,7 @@ int scene_1::Run(sf::RenderWindow &App)
 		//Clearing screen
 		App.clear();
 		//Drawing
+		//App.draw(Sprite);
 		App.draw(Sprite);
 		if (alpha == alpha_max)
 		{

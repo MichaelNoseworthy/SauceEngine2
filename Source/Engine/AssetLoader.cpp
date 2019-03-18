@@ -1,7 +1,16 @@
+/*##############################################################################
+#																			   #
+# Copyright 2018 Sauce Pig All Rights Reserved.					               #
+# Developed by Boris Merlo, Michael Noseworthy and Peter Tu                    #
+#                                                                              #
+##############################################################################*/
+
 #include "AssetLoader.h"
 
 bool exitProgram = false;
 
+
+//This code has been deappreciated but still can be used for music.  We now use AssetManager for most stuff
 
 void loadAssetFromFile(sf::Texture& asset, std::string FileLocation1, std::string FileLocation2)
 {
