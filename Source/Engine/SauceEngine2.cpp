@@ -49,8 +49,8 @@ LRESULT CALLBACK onEvent(HWND handle, UINT message, WPARAM wParam, LPARAM lParam
 }
 
 //If you wish to only display the game window and not the console, use WINAPI instead
-//int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR pArgs, INT)
-int main()
+int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR pArgs, INT)
+//int main()
 {
 	HANDLE ghMutex;
 	ghMutex = CreateMutex(NULL,

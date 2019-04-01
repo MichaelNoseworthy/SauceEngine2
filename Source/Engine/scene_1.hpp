@@ -14,6 +14,7 @@
 #include <SFML/Graphics.hpp>
 
 //extern AssetManager Assets;
+extern int lastscene;
 
 
 class scene_1 : public SceneManager
@@ -127,7 +128,7 @@ int scene_1::Run(sf::RenderWindow &App)
 					{
 						//Let's get play !
 						playing = true;
-						return (3);
+						return (lastscene);
 					}
 					else
 					{

@@ -15,6 +15,8 @@
 #include "Player.h"
 #include "Platform.h"
 
+extern int lastscene;
+
 class scene_3 : public SceneManager
 {
 private:
@@ -45,11 +47,13 @@ int scene_3::Run(sf::RenderWindow &App)
 	bool Running = true;
 	sf::Music music;
 	bool isPlaying = true;
+	lastscene = 3;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
 	//music.play();
 	//texture then size then position
 	Platform platform1(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(150.0f, 300.0f));
 	Platform platform2(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(450.0f, 300.0f));
+	
 
 	background.SetPosition(sf::Vector2f(0, 0));
 	

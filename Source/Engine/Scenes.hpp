@@ -20,6 +20,7 @@
 #include "scene_3.hpp"
 
 #endif // SCENES_HPP_INCLUDED
+static int lastscene = 2;
 
 void beginGame()
 {
@@ -32,6 +33,7 @@ void beginGame()
 	//Applications variables
 	std::vector<SceneManager*> Scenes;
 	int scene = 0; //Change scene start point.  Leave at 0!
+	
 
 
 	//Screens preparations - Add more scenes here
