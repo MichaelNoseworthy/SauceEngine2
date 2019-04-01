@@ -31,7 +31,7 @@ private:
 	sf::View defaultView;
 public:
 	scene_3(void);
-	virtual int Run(sf::RenderWindow &App);	
+	virtual int Run(sf::RenderWindow &App);		
 };
 
 scene_3::scene_3(void)	
@@ -70,7 +70,9 @@ int scene_3::Run(sf::RenderWindow &App)
 	}
 		
 	Player player(&playerTexture, sf::Vector2u(1, 1), 0.3, 100, 200); //texture, animation stuff, timer for animation, power to push in case needed and jumpforce
-
+	
+	//animation
+	Animation animation(&playerTexture, sf::Vector2u(3, 1), 0.3f);
 	player.SetPosition(sf::Vector2f(0, 0));
 
 	while (Running)
@@ -133,7 +135,10 @@ int scene_3::Run(sf::RenderWindow &App)
 			
 		}
 
+		animation.Update(0, deltaTime);
+		//settexutre? settexturerect?
 		player.Update(deltaTime);
+		
 		view.setCenter(player.GetPosition());
 
 		sf::Vector2f direction;

@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include "Components/GameObject.h"
 #include "Collider.h"
+#include "Animation.h"
 
 class Player : public GameObject
 {
