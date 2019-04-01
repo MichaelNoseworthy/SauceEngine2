@@ -57,23 +57,54 @@ int scene_3::Run(sf::RenderWindow &App)
 
 	background.SetPosition(sf::Vector2f(0, 0));
 	
-	if (!backgroundTexture.loadFromFile("../../Assets/images/scene2/background800x600.jpg"))
-	{
-		//find it in the game directory instead
-		if (!backgroundTexture.loadFromFile("./Assets/images/scene2/background800x600.jpg"))
-			return EXIT_FAILURE; //can't find it at all
-	}
-
+	loadAssetFromFile(backgroundTexture, "../../Assets/images/scene2/background800x600.jpg", "./Assets/images/scene2/background800x600.jpg");
+	
+	backgroundTexture.setRepeated(true);
 	background.sprite.setTexture(backgroundTexture);
 	
-	if (!playerTexture.loadFromFile("../../Assets/images/scene2/player.jpg"))
+	loadAssetFromFile(playerTexture, "../../Assets/images/scene2/player.jpg", "./Assets/images/scene2/player.jpg");
+	/*
+	//test code beings
+	//---BACKGROUND CREATION---//
+	std::vector<std::vector<sf::RenderTexture*>> background;
+	std::vector<sf::Sprite*> sprites;
+	int MAP_TILE_WIDTH = 800*100;
+	int MAP_TILE_HEIGHT = 600*1;
+	int TILE_WIDTH = 800;
+	int TILE_HEIGHT = 600;
+	for (int x = 0; x < MAP_TILE_WIDTH; ++x)
 	{
-		//find it in the game directory instead
-		if (!backgroundTexture.loadFromFile("./Assets/images/scene2/player.jpg"))
-			return EXIT_FAILURE; //can't find it at all
+		for (int y = 0; y < MAP_TILE_HEIGHT; ++y)
+		{
+			background[x][y] = new sf::RenderTexture::create(TILE_WIDTH, TILE_HEIGHT);
+			background[x][y]->create(TILE_WIDTH, TILE_HEIGHT);
+			background[x][y]->setView(sf::FloatRect(x * TILE_WIDTH,
+				y * TILE_HEIGHT,
+				TILE_WIDTH,
+				TILE_HEIGHT));
+		}
 	}
-		
-	Player player(&playerTexture, sf::Vector2u(1, 1), 0.3, 100, 200); //texture, animation stuff, timer for animation, power to push in case needed and jumpforce
+	for (sf::Sprite *sprite : sprites)
+	{
+		const sf::Vector2f &position = sprite->getPosition();
+		background[position.x / TILE_WIDTH][position.y / TILE_HEIGHT]->draw(*sprite);
+	}
+
+	//---BACKGROUND RENDERING---//
+	const sf::Vector2f topLeft = App.display->mapPixelToCoords(sf::Vector2f(0, 0));
+	const sf::Vector2f bottomRight = App.display->mapPixelToCoords(App.display->getView().getSize());
+	for (int x = topLeft.x / TILE_WIDTH; x <= bottomRight.x / TILE_WIDTH; ++x)
+	{
+		for (int y = topLeft.y / TILE_HEIGHT; y <= bottomRight.y / TILE_HEIGHT; ++y)
+		{
+			App.display->draw(background[x][y]->getTexture());
+		}
+	}
+	//test code ends
+	*/
+
+	
+	Player player(&playerTexture, sf::Vector2u(1, 1), 0.3, 70, 50); //texture, animation stuff, timer for animation, power to push in case needed and jumpforce
 	
 	//animation
 	Animation animation(&playerTexture, sf::Vector2u(3, 1), 0.3f);

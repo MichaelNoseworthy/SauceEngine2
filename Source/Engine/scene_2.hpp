@@ -262,6 +262,7 @@ int scene_2::Run(sf::RenderWindow &App)
 					return (1);
 					break;
 				case sf::Keyboard::Up:
+				case sf::Keyboard::W:
 					//					
 					lastPressed = 0;
 					rot = 0;
@@ -273,6 +274,7 @@ int scene_2::Run(sf::RenderWindow &App)
 					}
 					break;
 				case sf::Keyboard::Down:
+				case sf::Keyboard::S:
 					lastPressed = 2;
 					rot = 180;
 					if (canGoDown) {
@@ -283,6 +285,7 @@ int scene_2::Run(sf::RenderWindow &App)
 					}
 					break;
 				case sf::Keyboard::Left:
+				case sf::Keyboard::A:
 					lastPressed = 3;
 					rot = -90;
 					if (canGoLeft) {
@@ -293,6 +296,7 @@ int scene_2::Run(sf::RenderWindow &App)
 					}					
 					break;
 				case sf::Keyboard::Right:
+				case sf::Keyboard::D:
 					lastPressed = 1;
 					rot = 90;
 					if (canGoRight) {
