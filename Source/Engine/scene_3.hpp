@@ -11,9 +11,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <limits>
+#include <vector>
 #include "Collision.h"
 #include "Player.h"
 #include "Platform.h"
+#include "Projectile.h"
 
 extern int lastscene;
 
@@ -28,9 +30,12 @@ private:
 	
 	sf::Texture backgroundTexture;
 	sf::Texture playerTexture;
+	sf::Texture projectileTexture;
 	sf::Clock clock;
 	sf::View view;
 	sf::View defaultView;
+	std::vector<Projectile> projectileHolder;
+
 public:
 	scene_3(void);
 	virtual int Run(sf::RenderWindow &App);		
@@ -56,13 +61,13 @@ int scene_3::Run(sf::RenderWindow &App)
 	
 
 	background.SetPosition(sf::Vector2f(0, 0));
-	
+	loadAssetFromFile(projectileTexture, "../../Assets/images/scene2/shoot.png", "./Assets/images/scene2/shoot.png");
 	loadAssetFromFile(backgroundTexture, "../../Assets/images/scene2/background800x600.jpg", "./Assets/images/scene2/background800x600.jpg");
 	
 	backgroundTexture.setRepeated(true);
 	background.sprite.setTexture(backgroundTexture);
 	
-	loadAssetFromFile(playerTexture, "../../Assets/images/scene2/player.jpg", "./Assets/images/scene2/player.jpg");
+	loadAssetFromFile(playerTexture, "../../Assets/images/scene3/RamusAll.png", "./Assets/images/scene2/RamusAll.png");
 	/*
 	//test code beings
 	//---BACKGROUND CREATION---//
@@ -104,10 +109,12 @@ int scene_3::Run(sf::RenderWindow &App)
 	*/
 
 	
-	Player player(&playerTexture, sf::Vector2u(1, 1), 0.3, 70, 50); //texture, animation stuff, timer for animation, power to push in case needed and jumpforce
+	Player player(&playerTexture, sf::Vector2u(3, 5), 0.3, 70, 50); //texture, animation stuff, timer for animation,
+																	//power to push in case needed and jumpforce
+																	//3x5 = sprite animator
 	
 	//animation
-	Animation animation(&playerTexture, sf::Vector2u(3, 1), 0.3f);
+	//Animation animation(&playerTexture, sf::Vector2u(3, 1), 0.3f);
 	player.SetPosition(sf::Vector2f(0, 0));
 
 	while (Running)
@@ -133,12 +140,7 @@ int scene_3::Run(sf::RenderWindow &App)
 					defaultView = App.getDefaultView();
 					App.setView(defaultView);
 					return (1);
-					break;
-				case sf::Keyboard::Up:
-					//
-					
-					
-					break;
+					break;	
 				case sf::Keyboard::Down:
 					
 					break;
@@ -166,12 +168,20 @@ int scene_3::Run(sf::RenderWindow &App)
 						}
 
 					}
+					else if (Event.key.code == sf::Keyboard::L){					
+						Projectile newProjectile(&projectileTexture, sf::Vector2u(1, 1), 0.3, 20); //player speed 50 as reference
+						newProjectile.SetPos(sf::Vector2f(player.GetPositionX() + 15.0f, player.GetPositionY()));
+						projectileHolder.push_back(newProjectile);			
+					}
 			}
 			
 		}
 
-		animation.Update(0, deltaTime);
-		//settexutre? settexturerect?
+		for (int i = 0; i < projectileHolder.size(); i++) {
+			projectileHolder[i].Draw(App);
+			projectileHolder[i].Update(deltaTime);
+		}
+
 		player.Update(deltaTime);
 		
 		view.setCenter(player.GetPosition());

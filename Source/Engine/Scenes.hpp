@@ -32,7 +32,7 @@ void beginGame()
 	App.setMouseCursorVisible(false);
 	//Applications variables
 	std::vector<SceneManager*> Scenes;
-	int scene = 0; //Change scene start point.  Leave at 0!
+	int scene = 3; //Change scene start point.  Leave at 0!
 	
 
 

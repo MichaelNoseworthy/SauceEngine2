@@ -138,6 +138,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -234,6 +237,9 @@
       <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
       <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>

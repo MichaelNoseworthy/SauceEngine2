@@ -4,11 +4,12 @@
 #include "Components/GameObject.h"
 #include "Collider.h"
 #include "Animation.h"
+#include "Projectile.h"
 
 class Player : public GameObject
 {
 public:
-	Player();
+	//Player();
 	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed, float jumpHeight);
 	//Player(sf::Texture* Texture, sf::Vector2u imageCoun, float speed, float switchTime, float jumpHeight);
 	~Player();
@@ -22,7 +23,7 @@ public:
 
 private:
 	sf::RectangleShape body;
-	//Animation animation;
+	Animation animation;
 	unsigned int row;
 	float speed;
 	bool faceRight;
