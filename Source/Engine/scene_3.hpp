@@ -27,6 +27,9 @@ private:
 	float posy;
 	float deltaTime;	
 	GameObject background;
+	GameObject background2;
+	GameObject background3;
+	GameObject background4;
 	
 	sf::Texture backgroundTexture;
 	sf::Texture playerTexture;
@@ -58,14 +61,23 @@ int scene_3::Run(sf::RenderWindow &App)
 	//texture then size then position
 	Platform platform1(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(150.0f, 300.0f));
 	Platform platform2(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(450.0f, 300.0f));
-	
+	Platform platform3(nullptr, sf::Vector2f(40.0f, 20.0f), sf::Vector2f(270.0f, 350.0f));
+	Platform platform4(nullptr, sf::Vector2f(600.0f, 20.0f), sf::Vector2f(200.0f, 400.0f));
+	Platform platform5(nullptr, sf::Vector2f(40.0f, 20.0f), sf::Vector2f(0.0f, 350.0f));
 
-	background.SetPosition(sf::Vector2f(0, 0));
+	background.SetPosition(sf::Vector2f(-800, 0));
+	background2.SetPosition(sf::Vector2f(0, 0));
+	background3.SetPosition(sf::Vector2f(0, -600));
+	background4.SetPosition(sf::Vector2f(0, 600));
 	loadAssetFromFile(projectileTexture, "../../Assets/images/scene2/shoot.png", "./Assets/images/scene2/shoot.png");
 	loadAssetFromFile(backgroundTexture, "../../Assets/images/scene2/background800x600.jpg", "./Assets/images/scene2/background800x600.jpg");
 	
 	backgroundTexture.setRepeated(true);
 	background.sprite.setTexture(backgroundTexture);
+	background2.sprite.setTexture(backgroundTexture);
+	background4.sprite.setTexture(backgroundTexture);
+	background3.sprite.setTexture(backgroundTexture);
+
 	
 	loadAssetFromFile(playerTexture, "../../Assets/images/scene3/RamusAll.png", "./Assets/images/scene2/RamusAll.png");
 	/*
@@ -194,6 +206,15 @@ int scene_3::Run(sf::RenderWindow &App)
 		if (platform2.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
 			player.OnCollision(direction);
 		}
+		if (platform3.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
+			player.OnCollision(direction);
+		}
+		if (platform4.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
+			player.OnCollision(direction);
+		}
+		if (platform5.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
+			player.OnCollision(direction);
+		}
 
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
@@ -201,8 +222,14 @@ int scene_3::Run(sf::RenderWindow &App)
 		view.setViewport(sf::FloatRect(-0.5f, -0.5f, 2.0f, 2.0f));
 		//Drawing
 		App.draw(background.sprite);
+		App.draw(background2.sprite);
+		App.draw(background3.sprite);
+		App.draw(background4.sprite);
 		platform1.Draw(App);
+		platform3.Draw(App);
 		platform2.Draw(App);
+		platform4.Draw(App);
+		platform5.Draw(App);
 		player.Draw(App);
 		App.display();
 	}

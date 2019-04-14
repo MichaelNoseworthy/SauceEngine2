@@ -62,8 +62,10 @@ int scene_1::Run(sf::RenderWindow &App)
 
 	
 
-	AssetManager::loadTexture("present", "../../Assets/images/present.png", "./Assets/images/present.png");
+	AssetManager::loadTexture("present", "../../Assets/images/chanchoCero.png", "./Assets/images/chanchoCero.png");
 	Sprite.setTexture(*AssetManager::getTexture("present"));
+	Sprite.setPosition(sf::Vector2f(0, 0));
+	Sprite.setScale(sf::Vector2f(2.3, 2.7));
 	//Sprite.setTexture(Texture);
 	Sprite.setColor(sf::Color(255, 255, 255, alpha));
 

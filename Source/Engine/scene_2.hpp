@@ -68,15 +68,21 @@ public:
 	bool canGoLeft = true;
 
 	int lastPressed = 0;
+	sf::Clock clock;
+	sf::Clock clock2;
+	bool goLeft;
+	float AITimer;
+	float stageTimer;
+
 	
 };
 
 
 scene_2::scene_2(void)
 {
-	movement_step = 4;
-	posx = 500;
-	posy = 160;
+	movement_step = 2;
+	posx = 300;
+	posy = 230;
 	rot = 180;
 	//Setting sprite
 	//SpaceShip.setFillColor(sf::Color(255, 255, 255, 150));
@@ -118,8 +124,6 @@ int scene_2::Run(sf::RenderWindow &App)
 	sphere2.SetPosition(sf::Vector2f(405, 410));
 	root1.SetPosition(sf::Vector2f(445, 410));
 	root2.SetPosition(sf::Vector2f(465, 410));
-	//square.SetPosition(sf::Vector2f(320, 245));
-	//square.SetPosition(sf::Vector2f(320, 245));
 
 	/*
 	if (!squareTexture.loadFromFile("../../Assets/images/scene1/square.jpg"))
@@ -488,6 +492,30 @@ int scene_2::Run(sf::RenderWindow &App)
 			lastscene = 3;
 			return (lastscene);
 		}
+
+		sf::Time elapsed = clock.getElapsedTime();
+		sf::Time elapsed2 = clock2.getElapsedTime();
+
+		AITimer = elapsed.asSeconds();
+		stageTimer = elapsed2.asSeconds();
+
+		if (AITimer > 1) {
+			goLeft = !goLeft;
+			clock.restart();
+		}
+
+		if (stageTimer > 10.0f) {
+			return (3); // Go to scene_1
+		}
+		
+
+		if (goLeft) {
+			posx += 0.015*movement_step;
+		}
+		else
+			posx -= 0.015*movement_step;
+		
+
 
 		//Updating
 		if (posx > 630)
