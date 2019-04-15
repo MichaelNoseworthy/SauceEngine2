@@ -47,8 +47,8 @@ public:
 	GameObject blocks2;
 	GameObject blocks3;
 	sf::Texture blocksTexture;
-	GameObject SpaceShip;
-	sf::Texture SpaceShipImage;
+	GameObject SpaceShip2;
+	sf::Texture SpaceShipImage2;
 
 	GameObject sphere1;
 	GameObject sphere2;
@@ -68,10 +68,10 @@ public:
 	bool canGoLeft = true;
 
 	int lastPressed = 0;
-	sf::Clock clock;
+	
+	
 	sf::Clock clock2;
-	bool goLeft;
-	float AITimer;
+	
 	float stageTimer;
 
 
@@ -80,18 +80,18 @@ public:
 
 scene_2::scene_2(void)
 {
-	movement_step = 2;
-	posx = 300;
-	posy = 230;
+	movement_step = 4;
+	posx = 500;
+	posy = 160;
 	rot = 180;
 	//Setting sprite
 	//SpaceShip.setFillColor(sf::Color(255, 255, 255, 150));
 	//SpaceShip.setSize({ 10.f, 10.f });
 
-	loadAssetFromFile(SpaceShipImage, "../../Assets/images/scene1/kisspng.png", "./Assets/images/scene1/kisspng.png");
-	SpaceShip.sprite.setTexture(SpaceShipImage);
-	SpaceShip.sprite.scale(1.f, 1.f);
-	SpaceShip.SetPosition(sf::Vector2f(posx, posy));
+	loadAssetFromFile(SpaceShipImage2, "../../Assets/images/scene1/kisspng.png", "./Assets/images/scene1/kisspng.png");
+	SpaceShip2.sprite.setTexture(SpaceShipImage2);
+	SpaceShip2.sprite.scale(1.f, 1.f);
+	SpaceShip2.SetPosition(sf::Vector2f(posx, posy));
 }
 
 int scene_2::Run(sf::RenderWindow &App)
@@ -139,7 +139,7 @@ int scene_2::Run(sf::RenderWindow &App)
 
 	//square.sprite.setTexture(squareTexture);
 	//square.sprite.setOrigin(sf::Vector2f(square.sprite.getTexture()->getSize().x*0.5f, square.sprite.getTexture()->getSize().y*0.5f));		
-	SpaceShip.sprite.setOrigin(sf::Vector2f(SpaceShip.sprite.getTexture()->getSize().x*0.5f, SpaceShip.sprite.getTexture()->getSize().y*0.5f));
+	SpaceShip2.sprite.setOrigin(sf::Vector2f(SpaceShip2.sprite.getTexture()->getSize().x*0.5f, SpaceShip2.sprite.getTexture()->getSize().y*0.5f));
 	if (!backgroundTexture.loadFromFile("../../Assets/images/scene1/background800x600.jpg"))
 	{
 		//find it in the game directory instead
@@ -332,27 +332,40 @@ int scene_2::Run(sf::RenderWindow &App)
 		}
 				
 
-		sf::Time elapsed = clock.getElapsedTime();
+		
 		sf::Time elapsed2 = clock2.getElapsedTime();
 
-		AITimer = elapsed.asSeconds();
+		
 		stageTimer = elapsed2.asSeconds();
 
-		if (AITimer > 1) {
-			goLeft = !goLeft;
-			clock.restart();
+
+		//if (stageTimer > 8.0f) {
+		//	return (3); // Go to scene_1
+		//}
+		if (Collision::BoundingBoxTest(SpaceShip2.sprite, platform.sprite) && lastPressed == 2) {
+			canGoDown = false;
+			lastscene = 3;
+			return (lastscene);
 		}
 
-		if (stageTimer > 10.0f) {
-			return (3); // Go to scene_1
+		if (Collision::BoundingBoxTest(SpaceShip2.sprite, platform2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+			lastscene = 3;
+			return (lastscene);
 		}
 
-
-		if (goLeft) {
-			posx += 0.015*movement_step;
+		if (Collision::BoundingBoxTest(SpaceShip2.sprite, blocks1.sprite) && lastPressed == 2) {
+			canGoDown = false;
+			lastscene = 3;
+			return (lastscene);
 		}
-		else
-			posx -= 0.015*movement_step;
+
+		if (Collision::BoundingBoxTest(SpaceShip2.sprite, blocks2.sprite) && lastPressed == 2) {
+			canGoDown = false;
+			lastscene = 3;
+			return (lastscene);
+		}
+
 
 
 
@@ -367,9 +380,10 @@ int scene_2::Run(sf::RenderWindow &App)
 			posy = 0;
 		//Rectangle.setPosition({ posx, posy });
 
+		SpaceShip2.sprite.setPosition({ posx, posy });
+		SpaceShip2.sprite.setRotation({ rot });
 		//square.sprite.setPosition({ posx, posy });
-		SpaceShip.sprite.setPosition({ posx, posy });
-		SpaceShip.sprite.setRotation({ rot });
+		
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
 		//Drawing
@@ -391,7 +405,7 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(root2.sprite);
 		App.draw(root1.sprite);
 		//App.draw(square.sprite);
-		App.draw(SpaceShip.sprite);
+		App.draw(SpaceShip2.sprite);
 		App.display();
 	}
 

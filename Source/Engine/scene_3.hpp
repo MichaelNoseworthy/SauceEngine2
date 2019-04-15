@@ -8,6 +8,7 @@
 #include <iostream>
 #include "SceneManager.h"
 #include "Components/GameObject.h"
+#include "Components/TransformComponent.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <limits>
@@ -25,6 +26,8 @@ private:
 	float movement_step;
 	float posx;
 	float posy;
+	float rot;
+
 	float deltaTime;
 	GameObject background;
 	GameObject background2;
@@ -39,14 +42,29 @@ private:
 	sf::View defaultView;
 	std::vector<Projectile> projectileHolder;
 
+
 public:
 	scene_3(void);
 	virtual int Run(sf::RenderWindow &App);
+	GameObject SpaceShip;
+	sf::Texture SpaceShipImage;
+	sf::Clock clock3;
+	
+	bool goLeft;
+	float AITimer;
+	
 };
 
 scene_3::scene_3(void)
 {
+	movement_step = 2;
+	posx = 300;
+	posy = 150;
 	deltaTime = 0;
+	loadAssetFromFile(SpaceShipImage, "../../Assets/images/scene3/mship1.png", "./Assets/images/scene1/mship1.png");
+	SpaceShip.sprite.setTexture(SpaceShipImage);
+	SpaceShip.sprite.scale(1.f, 1.f);
+	SpaceShip.SetPosition(sf::Vector2f(posx, posy));
 }
 
 int scene_3::Run(sf::RenderWindow &App)
@@ -57,7 +75,7 @@ int scene_3::Run(sf::RenderWindow &App)
 	bool isPlaying = true;
 	lastscene = 3;
 	loadAssetFromFile(music, "../../Assets/Music/metroid03.ogg", "./Assets/Music/metroid03.ogg");
-	//music.play();
+	music.play();
 	//texture then size then position
 	Platform platform1(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(150.0f, 300.0f));
 	Platform platform2(nullptr, sf::Vector2f(160.0f, 20.0f), sf::Vector2f(450.0f, 300.0f));
@@ -77,6 +95,14 @@ int scene_3::Run(sf::RenderWindow &App)
 	background2.sprite.setTexture(backgroundTexture);
 	background4.sprite.setTexture(backgroundTexture);
 	background3.sprite.setTexture(backgroundTexture);
+
+	SpaceShip.sprite.setOrigin(sf::Vector2f(SpaceShip.sprite.getTexture()->getSize().x*0.5f, SpaceShip.sprite.getTexture()->getSize().y*0.5f));
+	if (!backgroundTexture.loadFromFile("../../Assets/images/scene1/background800x600.jpg"))
+	{
+		//find it in the game directory instead
+		if (!backgroundTexture.loadFromFile("./Assets/images/scene1/background800x600.jpg"))
+			return EXIT_FAILURE; //can't find it at all
+	}
 
 
 	loadAssetFromFile(playerTexture, "../../Assets/images/scene3/RamusAll.png", "./Assets/images/scene2/RamusAll.png");
@@ -118,8 +144,7 @@ int scene_3::Run(sf::RenderWindow &App)
 	}
 	//test code ends
 	*/
-
-
+	
 	Player player(&playerTexture, sf::Vector2u(3, 5), 0.3, 70, 50); //texture, animation stuff, timer for animation,
 																	//power to push in case needed and jumpforce
 																	//3x5 = sprite animator
@@ -193,28 +218,49 @@ int scene_3::Run(sf::RenderWindow &App)
 			projectileHolder[i].Update(deltaTime);
 		}
 
-		player.Update(deltaTime);
+		sf::Time elapsed = clock3.getElapsedTime();
+		
 
-		view.setCenter(player.GetPosition());
+		AITimer = elapsed.asSeconds();
+		
+
+		if (AITimer > 1) {
+			goLeft = !goLeft;
+			clock3.restart();
+		}
+
+
+
+		if (goLeft) {
+			posx += 0.015*movement_step;
+		}
+		else
+			posx -= 0.015*movement_step;
+
+		player.Update(deltaTime, &playerTexture);
+		player.transComp.Update(deltaTime);
+		view.setCenter(player.transComp.GetPosition());
 
 		sf::Vector2f direction;
 
-		if (platform1.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-			player.OnCollision(direction);
+		if (platform1.GetCollider().CheckCollision(player.transComp.GetCollider(), direction, 1.0f)) {
+			player.transComp.OnCollision(direction);
 		}
-		if (platform2.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-			player.OnCollision(direction);
+		if (platform2.GetCollider().CheckCollision(player.transComp.GetCollider(), direction, 1.0f)) {
+			player.transComp.OnCollision(direction);
 		}
-		if (platform3.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-			player.OnCollision(direction);
+		if (platform3.GetCollider().CheckCollision(player.transComp.GetCollider(), direction, 1.0f)) {
+			player.transComp.OnCollision(direction);
 		}
-		if (platform4.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-			player.OnCollision(direction);
+		if (platform4.GetCollider().CheckCollision(player.transComp.GetCollider(), direction, 1.0f)) {
+			player.transComp.OnCollision(direction);
 		}
-		if (platform5.GetCollider().CheckCollision(player.GetCollider(), direction, 1.0f)) {
-			player.OnCollision(direction);
+		if (platform5.GetCollider().CheckCollision(player.transComp.GetCollider(), direction, 1.0f)) {
+			player.transComp.OnCollision(direction);
 		}
 
+		SpaceShip.sprite.setPosition({ posx, posy });
+		SpaceShip.sprite.setRotation({ rot });
 		//Clearing screen
 		App.clear(sf::Color(0, 0, 0, 0));
 		App.setView(view);
@@ -229,6 +275,7 @@ int scene_3::Run(sf::RenderWindow &App)
 		platform2.Draw(App);
 		platform4.Draw(App);
 		platform5.Draw(App);
+		App.draw(SpaceShip.sprite);
 		player.Draw(App);
 		App.display();
 	}
