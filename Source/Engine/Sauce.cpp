@@ -5,13 +5,7 @@
 #                                                                              #
 ##############################################################################*/
 
-#pragma once
-#ifndef SCENES_HPP_INCLUDED
-#define SCENES_HPP_INCLUDED
-
-//Basic Scene Class
-#include "SceneManager.h"
-#include <windows.h>
+#include "Sauce.hpp"
 
 //Including each screen of application
 #include "scene_0.hpp"
@@ -19,12 +13,31 @@
 #include "scene_2.hpp"
 #include "scene_3.hpp"
 
-#endif // SCENES_HPP_INCLUDED
-static int lastscene = 2;
 
-void beginGame()
+void Sauce::Initialize()
 {
+	CheckRAM();
+	CheckCPU();
+	int hardwareResult;
+	hardwareResult = CheckHDDHardware();
+	if (hardwareResult == 0)
+	{
+		const std::wstring eMsg = std::wstring(L"\n\nException caught at main window creation.");
+		MessageBox(nullptr, eMsg.c_str(), L"Failed to pass hardware test", MB_OK);
+		exit(-1);
+	}
 
+	// Test lua
+	sol::state lua;
+
+	lua["message"] = [](const std::string& msg) {
+		MessageBoxA(nullptr, msg.c_str(), "Lua Message", MB_OK);
+	};
+	lua.do_string("message('Howdy, from Lua!')");
+}
+
+void Sauce::Start()
+{
 	//Window creation
 	sf::RenderWindow App(sf::VideoMode(640, 480, 32), "Sauce Engine 2");
 
@@ -32,8 +45,8 @@ void beginGame()
 	App.setMouseCursorVisible(false);
 	//Applications variables
 	std::vector<SceneManager*> Scenes;
-	int scene = 3; //Change scene start point.  Leave at 0!
-	
+	int scene = 0; //Change scene start point.  Leave at 0!
+
 
 
 	//Screens preparations - Add more scenes here

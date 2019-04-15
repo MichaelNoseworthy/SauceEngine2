@@ -93,9 +93,6 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes.hpp">
-      <Filter>Engine Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="AssetLoader.h">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
@@ -139,6 +136,9 @@
       <Filter>Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sauce.hpp">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -240,6 +240,9 @@
       <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sauce.cpp">
       <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>
