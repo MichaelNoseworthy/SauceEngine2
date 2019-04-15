@@ -14,7 +14,6 @@
 #include <vector>
 #include "Collision.h"
 #include "Player.h"
-#include "Components/TransformComponent.h"
 #include "Platform.h"
 #include "Projectile.h"
 
@@ -113,7 +112,7 @@ int scene_3::Run(sf::RenderWindow &App)
 	Player player(&playerTexture, sf::Vector2u(3, 5), 0.3, 70, 50); //texture, animation stuff, timer for animation,
 																	//power to push in case needed and jumpforce
 																	//3x5 = sprite animator
-	TransformComponent trans;
+	
 	//animation
 	//Animation animation(&playerTexture, sf::Vector2u(3, 1), 0.3f);
 	player.SetPosition(sf::Vector2f(0, 0));
@@ -184,7 +183,7 @@ int scene_3::Run(sf::RenderWindow &App)
 		}
 
 		player.Update(deltaTime);
-		trans.Update(deltaTime);
+		
 		view.setCenter(player.GetPosition());
 
 		sf::Vector2f direction;
@@ -202,9 +201,9 @@ int scene_3::Run(sf::RenderWindow &App)
 		view.setViewport(sf::FloatRect(-0.5f, -0.5f, 2.0f, 2.0f));
 		//Drawing
 		App.draw(background.sprite);
-		App.draw(platform1.sprite);
-		App.draw(platform2.sprite);
-		App.draw(player.sprite);
+		platform1.Draw(App);
+		platform2.Draw(App);
+		player.Draw(App);
 		App.display();
 	}
 

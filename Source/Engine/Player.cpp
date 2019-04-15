@@ -29,11 +29,9 @@ Player::~Player()
 
 }
 
-
 void Player::Update(float deltaTime)
 {
 	//sf::Vector2f movement(0.0f, 0.0f);
-	
 	velocity.x *= 0.0f; //stp whe nno pressed
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))

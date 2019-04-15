@@ -7,31 +7,11 @@
 
 #include "TransformComponent.h"
 
-TransformComponent::TransformComponent() {
-
-}
-
-void TransformComponent::Awake()
+TransformComponent::TransformComponent()
 {
-
 }
 
-void TransformComponent::Start()
+
+TransformComponent::~TransformComponent()
 {
-
 }
-
-void TransformComponent::Update(float time) {
-
-
-}
-
-void TransformComponent::FixedUpdate(float time) {
-
-}
-
-
-//void TransformComponent::Draw(sf::RenderWindow& window)
-//{
-//
-//}
