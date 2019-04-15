@@ -201,9 +201,15 @@ int scene_3::Run(sf::RenderWindow &App)
 		view.setViewport(sf::FloatRect(-0.5f, -0.5f, 2.0f, 2.0f));
 		//Drawing
 		App.draw(background.sprite);
+
+		App.draw(platform1.sprite);
+		App.draw(platform2.sprite);
+		App.draw(player.sprite);
+		/*
 		platform1.Draw(App);
 		platform2.Draw(App);
 		player.Draw(App);
+		*/
 		App.display();
 	}
 

@@ -5,7 +5,6 @@
 #                                                                              #
 ##############################################################################*/
 
-#include "sol.hpp"
 #include <SFML/Graphics.hpp>
 #include <windows.h>
 #include "resource.h"
@@ -60,7 +59,6 @@ int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR pArgs, INT)
 	LPCTSTR Opened = L"Error, close it";
 	if (ghMutex == NULL)
 	{
-
 		if (::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
 			NULL,
 			err,
@@ -94,8 +92,6 @@ int WINAPI wWinMain(HINSTANCE hInst, HINSTANCE, LPWSTR pArgs, INT)
 					}
 					else
 					{
-						
-						
 						Sauce::Initialize();
 						Sauce::Start();
 
