@@ -47,7 +47,7 @@ int scene_1::Run(sf::RenderWindow &App)
 	sf::Text Menu2;
 	sf::Text Menu3;
 	int menu = 0;
-	
+
 
 	//loadAssetFromFile(Texture, "../../Assets/images/present.png", "./Assets/images/present.png");
 
@@ -60,14 +60,16 @@ int scene_1::Run(sf::RenderWindow &App)
 	*/
 
 
-	
 
-	AssetManager::loadTexture("present", "../../Assets/images/present.png", "./Assets/images/present.png");
+
+	AssetManager::loadTexture("present", "../../Assets/images/chanchoCero.png", "./Assets/images/chanchoCero.png");
 	Sprite.setTexture(*AssetManager::getTexture("present"));
+	Sprite.setPosition(sf::Vector2f(0, 0));
+	Sprite.setScale(sf::Vector2f(2.3, 2.7));
 	//Sprite.setTexture(Texture);
 	Sprite.setColor(sf::Color(255, 255, 255, alpha));
 
-	
+
 
 	//loadAssetFromFile(Font, "../../Assets/fonts/verdanab.ttf", "./Assets/fonts/verdanab.ttf");
 	AssetManager::loadFont("verdanab", "../../Assets/fonts/verdanab.ttf", "./Assets/fonts/verdanab.ttf");
@@ -93,7 +95,7 @@ int scene_1::Run(sf::RenderWindow &App)
 
 	//ding_on.wav
 
-	
+
 
 	if (playing)
 	{
@@ -149,15 +151,15 @@ int scene_1::Run(sf::RenderWindow &App)
 		Sprite.setColor(sf::Color(255, 255, 255, alpha / alpha_div));
 		if (menu == 0)
 		{
-			Menu1.setFillColor(sf::Color(255, 0, 0, 255));
-			Menu2.setFillColor(sf::Color(255, 255, 255, 255));
-			Menu3.setFillColor(sf::Color(255, 0, 0, 255));
+			Menu1.setColor(sf::Color(255, 0, 0, 255));
+			Menu2.setColor(sf::Color(255, 255, 255, 255));
+			Menu3.setColor(sf::Color(255, 0, 0, 255));
 		}
 		else
 		{
-			Menu1.setFillColor(sf::Color(255, 255, 255, 255));
-			Menu2.setFillColor(sf::Color(255, 0, 0, 255));
-			Menu3.setFillColor(sf::Color(255, 255, 255, 255));
+			Menu1.setColor(sf::Color(255, 255, 255, 255));
+			Menu2.setColor(sf::Color(255, 0, 0, 255));
+			Menu3.setColor(sf::Color(255, 255, 255, 255));
 		}
 
 		//Clearing screen

@@ -212,10 +212,12 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Sauce.hpp" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="scene_0.hpp" />
@@ -252,9 +254,11 @@ XCOPY "$(SolutionDir)..\Lib\SFML\lib\openal32.dll" "$(TargetDir)" /S /I /Y</Comm
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Sauce.cpp" />
     <ClCompile Include="SauceEngine2.cpp" />
     <ClCompile Include="Assets.cpp" />

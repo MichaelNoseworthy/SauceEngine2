@@ -141,6 +141,12 @@
     <ClInclude Include="Sauce.hpp">
       <Filter>Engine Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Engine Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Keyboard.cpp">
@@ -243,6 +249,12 @@
       <Filter>Engine Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sauce.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Engine Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
       <Filter>Engine Source Files</Filter>
     </ClCompile>
   </ItemGroup>

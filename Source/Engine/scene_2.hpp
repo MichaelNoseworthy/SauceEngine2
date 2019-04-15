@@ -22,7 +22,7 @@ private:
 	float posx;
 	float posy;
 	float rot;
-	
+
 public:
 	scene_2(void);
 	virtual int Run(sf::RenderWindow &App);
@@ -56,7 +56,7 @@ public:
 
 	//GameObject square;
 	//sf::Texture squareTexture;
-	
+
 
 	GameObject root1;
 	GameObject root2;
@@ -68,20 +68,26 @@ public:
 	bool canGoLeft = true;
 
 	int lastPressed = 0;
-	
+	sf::Clock clock;
+	sf::Clock clock2;
+	bool goLeft;
+	float AITimer;
+	float stageTimer;
+
+
 };
 
 
 scene_2::scene_2(void)
 {
-	movement_step = 4;
-	posx = 500;
-	posy = 160;
+	movement_step = 2;
+	posx = 300;
+	posy = 230;
 	rot = 180;
 	//Setting sprite
 	//SpaceShip.setFillColor(sf::Color(255, 255, 255, 150));
 	//SpaceShip.setSize({ 10.f, 10.f });
-	
+
 	loadAssetFromFile(SpaceShipImage, "../../Assets/images/scene1/kisspng.png", "./Assets/images/scene1/kisspng.png");
 	SpaceShip.sprite.setTexture(SpaceShipImage);
 	SpaceShip.sprite.scale(1.f, 1.f);
@@ -118,8 +124,6 @@ int scene_2::Run(sf::RenderWindow &App)
 	sphere2.SetPosition(sf::Vector2f(405, 410));
 	root1.SetPosition(sf::Vector2f(445, 410));
 	root2.SetPosition(sf::Vector2f(465, 410));
-	//square.SetPosition(sf::Vector2f(320, 245));
-	//square.SetPosition(sf::Vector2f(320, 245));
 
 	/*
 	if (!squareTexture.loadFromFile("../../Assets/images/scene1/square.jpg"))
@@ -293,7 +297,7 @@ int scene_2::Run(sf::RenderWindow &App)
 						canGoRight = true;
 						canGoUp = true;
 						canGoDown = true;
-					}					
+					}
 					break;
 				case sf::Keyboard::Right:
 				case sf::Keyboard::D:
@@ -301,10 +305,10 @@ int scene_2::Run(sf::RenderWindow &App)
 					rot = 90;
 					if (canGoRight) {
 						posx += movement_step;
-						canGoLeft = true;						
+						canGoLeft = true;
 						canGoUp = true;
 						canGoDown = true;
-					}					
+					}
 					break;
 				default:
 					break;
@@ -326,168 +330,31 @@ int scene_2::Run(sf::RenderWindow &App)
 					}
 			}
 		}
+				
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
+		sf::Time elapsed = clock.getElapsedTime();
+		sf::Time elapsed2 = clock2.getElapsedTime();
+
+		AITimer = elapsed.asSeconds();
+		stageTimer = elapsed2.asSeconds();
+
+		if (AITimer > 1) {
+			goLeft = !goLeft;
+			clock.restart();
 		}
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform2.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
+		if (stageTimer > 10.0f) {
+			return (3); // Go to scene_1
 		}
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, blocks1.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, blocks2.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
+		if (goLeft) {
+			posx += 0.015*movement_step;
 		}
+		else
+			posx -= 0.015*movement_step;
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, root1.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
 
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, root2.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, sphere1.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, sphere2.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, blocks3.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform3.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam1.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam1.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, sphere1.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, sphere1.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, root1.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, root2.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam1.sprite) && lastPressed == 1) {
-			canGoRight = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform2.sprite) && lastPressed == 1) {
-			canGoRight = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform3.sprite) && lastPressed == 1) {
-			canGoRight = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::PixelPerfectTest(SpaceShip.sprite, beam1.sprite) && lastPressed == 3) {
-			canGoLeft = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform2.sprite) && lastPressed == 3) {
-			canGoLeft = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform.sprite) && lastPressed == 3) {
-			canGoLeft = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, platform3.sprite) && lastPressed == 3) {
-			canGoLeft = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam2.sprite) && lastPressed == 2) {
-			canGoDown = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam2.sprite) && lastPressed == 0) {
-			canGoUp = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam2.sprite) && lastPressed == 1) {
-			canGoRight = false;
-			lastscene = 3;
-			return (lastscene);
-		}
-
-		if (Collision::BoundingBoxTest(SpaceShip.sprite, beam2.sprite) && lastPressed == 3) {
-			canGoLeft = false;
-			lastscene = 3;
-			return (lastscene);
-		}
 
 		//Updating
 		if (posx > 630)
@@ -512,10 +379,10 @@ int scene_2::Run(sf::RenderWindow &App)
 		App.draw(platform3.sprite);
 		//App.draw(Rectangle);
 		App.draw(moon.sprite);
-	//	App.draw(beam1.sprite);
-	//	App.draw(beam2.sprite);
+		//	App.draw(beam1.sprite);
+		//	App.draw(beam2.sprite);
 		App.draw(pelton.sprite);
-	//	App.draw(beam3.sprite);
+		//	App.draw(beam3.sprite);
 		App.draw(blocks1.sprite);
 		App.draw(blocks2.sprite);
 		App.draw(blocks3.sprite);
